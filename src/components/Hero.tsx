@@ -67,11 +67,10 @@ const Hero = () => {
 >
   <div className="relative z-10 rounded-3xl overflow-hidden shadow-2xl border-8 border-white dark:border-slate-800 aspect-[4/5]">
      <img 
-       src="https://images.unsplash.com/photo-1543269865-cbf42767292b?auto=format&fit=crop&q=80&w=800&h=1000" 
-       alt="Diverse group of students studying diligently" 
+       src="https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=800&auto=format&fit=crop" 
+       alt="Group of students studying together" 
        className="object-cover w-full h-full"
-     />     {/* Overlay for cohesive teal tint */}
-     <div className="absolute inset-0 bg-teal-600/10 mix-blend-multiply" />
+     />
   </div>
             
             {/* Floating Badges */}
