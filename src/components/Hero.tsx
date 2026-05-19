@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, GraduationCap, Users, Star } from 'lucide-react';
+import { ArrowRight, GraduationCap, Users, Star, Award } from 'lucide-react';
 
 const Hero = () => {
   return (
@@ -100,11 +100,11 @@ const Hero = () => {
               className="absolute -bottom-6 -left-6 bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-xl z-20 flex items-center space-x-4 border border-teal-50 dark:border-slate-700"
             >
               <div className="bg-teal-100 dark:bg-teal-900/30 p-3 rounded-xl">
-                <Users className="h-6 w-6 text-teal-600 dark:text-teal-400" />
+                <Award className="h-6 w-6 text-teal-600 dark:text-teal-400" />
               </div>
               <div>
-                <p className="font-bold text-slate-900 dark:text-white">Expert Faculty</p>
-                <p className="text-xs text-slate-500 dark:text-slate-400">Highly qualified mentors</p>
+                <p className="font-bold text-slate-900 dark:text-white">10+ Years</p>
+                <p className="text-xs text-slate-500 dark:text-slate-400">Of Teaching Excellence</p>
               </div>
             </motion.div>
           </motion.div>

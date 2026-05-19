@@ -49,7 +49,7 @@ const WhyChooseUs = () => {
               transition={{ delay: 0.1 }}
               className="text-lg text-slate-600 dark:text-slate-300 mb-10 leading-relaxed"
             >
-              We believe that every student has a unique spark. Our mission is to provide the right environment and guidance to help that spark grow into a bright future.
+              With over 10 years of experience in the field of education, we believe that every student has a unique spark. Our mission is to provide the right environment and guidance to help that spark grow into a bright future.
             </motion.p>
             
             <div className="space-y-6">
