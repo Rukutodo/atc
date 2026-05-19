@@ -67,8 +67,8 @@ const Hero = () => {
 >
   <div className="relative z-10 rounded-3xl overflow-hidden shadow-2xl border-8 border-white dark:border-slate-800 aspect-[4/5]">
      <img 
-       src="https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=800&auto=format&fit=crop" 
-       alt="Group of students studying together" 
+       src="/assets/StudySessionInACozyRoom.png" 
+       alt="Acharya Tutorials Study Session" 
        className="object-cover w-full h-full"
      />
   </div>
