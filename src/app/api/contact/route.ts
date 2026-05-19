@@ -75,14 +75,19 @@ export async function POST(req: Request) {
         to: email,
         subject: `Thank you for contacting Acharya Tutorials!`,
         html: `
-          <div style="font-family: sans-serif; padding: 20px; color: #334155;">
+          <div style="font-family: sans-serif; padding: 20px; color: #334155; max-width: 600px; margin: auto; border: 1px solid #f1f5f9; border-radius: 16px;">
+            <div style="text-align: center; margin-bottom: 24px;">
+              <img src="https://acharyatutorials.vercel.app/icon.svg" alt="Acharya Tutorials Icon" style="width: 48px; height: 48px;" />
+              <h1 style="color: #0d9488; margin-top: 12px; font-size: 24px;">Acharya Tutorials</h1>
+            </div>
             <h2 style="color: #0d9488;">Hello ${name},</h2>
             <p>Thank you for reaching out to <strong>Acharya Tutorials</strong>. We have received your inquiry for <strong>${grade.toUpperCase()}</strong>.</p>
             <p>Our team will review your requirements and get back to you on your mobile number (<strong>${phone}</strong>) within the next 24 hours.</p>
             <p>At Acharya Tutorials, we are committed to providing the best quality education at a reasonable price. We look forward to helping you achieve your academic goals!</p>
             <br />
-            <p>Best Regards,</p>
-            <p><strong>The Acharya Tutorials Team</strong><br />Visakhapatnam, Andhra Pradesh</p>
+            <hr style="border: none; border-top: 1px solid #f1f5f9;" />
+            <p style="font-size: 14px; color: #64748b;">Best Regards,</p>
+            <p style="font-size: 14px; color: #64748b;"><strong>The Acharya Tutorials Team</strong><br />Visakhapatnam, Andhra Pradesh</p>
           </div>
         `,
       };
