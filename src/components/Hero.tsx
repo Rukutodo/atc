@@ -63,22 +63,21 @@ const Hero = () => {
               </div>
             </div>
           </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="relative hidden lg:block"
-          >
-            <div className="relative z-10 rounded-3xl overflow-hidden shadow-2xl border-8 border-white dark:border-slate-800">
-               <div className="aspect-[4/5] bg-gradient-to-br from-teal-500 to-emerald-600 flex items-center justify-center">
-                  <div className="text-white p-12 text-center">
-                    <GraduationCap className="h-24 w-24 mx-auto mb-6 opacity-80" />
-                    <h3 className="text-3xl font-bold mb-4">Excellence in Every Lesson</h3>
-                    <p className="text-teal-50 opacity-90 text-lg">Personalized attention for every child's growth.</p>
-                  </div>
-               </div>
-            </div>
+<motion.div
+  initial={{ opacity: 0, scale: 0.8 }}
+  animate={{ opacity: 1, scale: 1 }}
+  transition={{ duration: 0.8, delay: 0.2 }}
+  className="relative hidden lg:block"
+>
+  <div className="relative z-10 rounded-3xl overflow-hidden shadow-2xl border-8 border-white dark:border-slate-800 aspect-[4/5]">
+     <img 
+       src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=800&h=1000" 
+       alt="Students learning together" 
+       className="object-cover w-full h-full"
+     />
+     {/* Overlay for cohesive teal tint */}
+     <div className="absolute inset-0 bg-teal-600/10 mix-blend-multiply" />
+  </div>
             
             {/* Floating Badges */}
             <motion.div
