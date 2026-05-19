@@ -65,8 +65,29 @@ export async function POST(req: Request) {
       `,
     };
 
-    // Send the email
+    // Send the email to Admin
     await transporter.sendMail(mailOptions);
+
+    // 3. Send "Thank You" email to Student (if email provided)
+    if (email) {
+      const studentMailOptions = {
+        from: process.env.EMAIL_USER,
+        to: email,
+        subject: `Thank you for contacting Acharya Tutorials!`,
+        html: `
+          <div style="font-family: sans-serif; padding: 20px; color: #334155;">
+            <h2 style="color: #0d9488;">Hello ${name},</h2>
+            <p>Thank you for reaching out to <strong>Acharya Tutorials</strong>. We have received your inquiry for <strong>${grade.toUpperCase()}</strong>.</p>
+            <p>Our team will review your requirements and get back to you on your mobile number (<strong>${phone}</strong>) within the next 24 hours.</p>
+            <p>At Acharya Tutorials, we are committed to providing the best quality education at a reasonable price. We look forward to helping you achieve your academic goals!</p>
+            <br />
+            <p>Best Regards,</p>
+            <p><strong>The Acharya Tutorials Team</strong><br />Visakhapatnam, Andhra Pradesh</p>
+          </div>
+        `,
+      };
+      await transporter.sendMail(studentMailOptions);
+    }
 
     return NextResponse.json({ message: 'Email sent successfully' }, { status: 200 });
   } catch (error: any) {

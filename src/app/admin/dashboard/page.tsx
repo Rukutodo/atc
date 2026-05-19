@@ -2,6 +2,7 @@ import { getSession } from '@/lib/auth';
 import { redirect } from 'next/navigation';
 import { cookies } from 'next/headers';
 import { supabaseAdmin } from '@/lib/supabase';
+import StatusDropdown from './StatusDropdown';
 import { 
   Users, 
   Mail, 
@@ -10,7 +11,6 @@ import {
   LogOut, 
   LayoutDashboard, 
   Search,
-  ChevronRight,
   Clock,
   Filter,
   MessageSquare
@@ -138,13 +138,12 @@ const AdminDashboard = async () => {
                     <th className="px-6 py-4">Contact Details</th>
                     <th className="px-6 py-4">Message</th>
                     <th className="px-6 py-4">Status</th>
-                    <th className="px-6 py-4">Action</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-100 dark:divide-slate-700">
                   {leadsList.length === 0 ? (
                     <tr>
-                      <td colSpan={6} className="px-6 py-12 text-center text-slate-500 dark:text-slate-400 italic">
+                      <td colSpan={5} className="px-6 py-12 text-center text-slate-500 dark:text-slate-400 italic">
                         No inquiries found yet.
                       </td>
                     </tr>
@@ -153,6 +152,9 @@ const AdminDashboard = async () => {
                       <tr key={lead.id} className="hover:bg-slate-50/50 dark:hover:bg-slate-700/30 transition-colors">
                         <td className="px-6 py-4">
                           <div className="font-bold text-slate-900 dark:text-white">{lead.name}</div>
+                          <div className="text-[10px] text-slate-400 mt-1 uppercase">
+                            {new Date(lead.created_at).toLocaleDateString()}
+                          </div>
                         </td>
                         <td className="px-6 py-4">
                           <span className="px-3 py-1 rounded-full bg-teal-50 dark:bg-teal-900/30 text-teal-700 dark:text-teal-400 text-xs font-bold uppercase">
@@ -165,7 +167,7 @@ const AdminDashboard = async () => {
                               <Mail className="h-3 w-3" />
                               <span className="truncate max-w-[150px]">{lead.email || 'N/A'}</span>
                             </span>
-                            <span className="flex items-center space-x-2">
+                            <span className="flex items-center space-x-2 font-medium">
                               <Phone className="h-3 w-3" />
                               <span>{lead.phone}</span>
                             </span>
@@ -178,18 +180,7 @@ const AdminDashboard = async () => {
                           </div>
                         </td>
                         <td className="px-6 py-4">
-                          <span className={`px-3 py-1 rounded-full text-[10px] font-extrabold uppercase ${
-                            lead.status === 'New' ? 'bg-blue-100 text-blue-700' :
-                            lead.status === 'Contacted' ? 'bg-amber-100 text-amber-700' :
-                            'bg-emerald-100 text-emerald-700'
-                          }`}>
-                            {lead.status}
-                          </span>
-                        </td>
-                        <td className="px-6 py-4 text-right">
-                          <button className="text-slate-400 hover:text-teal-600">
-                            <ChevronRight className="h-5 w-5" />
-                          </button>
+                          <StatusDropdown id={lead.id} currentStatus={lead.status} />
                         </td>
                       </tr>
                     ))
