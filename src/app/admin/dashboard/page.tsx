@@ -1,6 +1,7 @@
 import { getSession } from '@/lib/auth';
 import { redirect } from 'next/navigation';
 import { cookies } from 'next/headers';
+import { supabaseAdmin } from '@/lib/supabase';
 import { 
   Users, 
   Mail, 
@@ -11,7 +12,8 @@ import {
   Search,
   ChevronRight,
   Clock,
-  Filter
+  Filter,
+  MessageSquare
 } from 'lucide-react';
 
 const AdminDashboard = async () => {
@@ -21,13 +23,19 @@ const AdminDashboard = async () => {
     redirect('/admin');
   }
 
-  // Simulated static leads since there is no DB yet
-  const leads = [
-    { id: 1, name: 'Rahul Sharma', email: 'rahul@example.com', phone: '9876543210', grade: 'ICSE 10th', date: '2 mins ago', status: 'New' },
-    { id: 2, name: 'Priya Das', email: 'priya.das@gmail.com', phone: '9440572502', grade: 'CBSE 8th', date: '1 hour ago', status: 'Contacted' },
-    { id: 3, name: 'Kiran Kumar', email: 'kiran.k@outlook.com', phone: '9346801502', grade: 'Online Classes', date: '5 hours ago', status: 'New' },
-    { id: 4, name: 'Anjali V.', email: 'anjali.v@gmail.com', phone: '9123456789', grade: 'SSC 9th', date: '1 day ago', status: 'Enrolled' },
-  ];
+  // Fetch real leads from Supabase
+  const { data: leads, error } = await supabaseAdmin
+    .from('leads')
+    .select('*')
+    .order('created_at', { ascending: false });
+
+  if (error) {
+    console.error('Error fetching leads:', error);
+  }
+
+  const leadsList = leads || [];
+  const newLeadsCount = leadsList.filter(l => l.status === 'New').length;
+  const totalLeads = leadsList.length;
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-900 flex">
@@ -96,18 +104,18 @@ const AdminDashboard = async () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
             <div className="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700">
               <p className="text-slate-500 dark:text-slate-400 text-sm font-medium mb-1">Total Leads</p>
-              <h3 className="text-3xl font-bold text-slate-900 dark:text-white">48</h3>
-              <p className="text-teal-600 text-xs mt-2 font-bold">+12% from last week</p>
+              <h3 className="text-3xl font-bold text-slate-900 dark:text-white">{totalLeads}</h3>
+              <p className="text-teal-600 text-xs mt-2 font-bold">All time inquiries</p>
             </div>
             <div className="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700">
               <p className="text-slate-500 dark:text-slate-400 text-sm font-medium mb-1">New Inquiries</p>
-              <h3 className="text-3xl font-bold text-slate-900 dark:text-white">14</h3>
+              <h3 className="text-3xl font-bold text-slate-900 dark:text-white">{newLeadsCount}</h3>
               <p className="text-amber-500 text-xs mt-2 font-bold">Requires attention</p>
             </div>
             <div className="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700">
-              <p className="text-slate-500 dark:text-slate-400 text-sm font-medium mb-1">Conversions</p>
-              <h3 className="text-3xl font-bold text-slate-900 dark:text-white">22</h3>
-              <p className="text-emerald-600 text-xs mt-2 font-bold">98% Success rate</p>
+              <p className="text-slate-500 dark:text-slate-400 text-sm font-medium mb-1">Status</p>
+              <h3 className="text-3xl font-bold text-emerald-600">Active</h3>
+              <p className="text-emerald-600 text-xs mt-2 font-bold">System online</p>
             </div>
           </div>
 
@@ -128,53 +136,64 @@ const AdminDashboard = async () => {
                     <th className="px-6 py-4">Student Name</th>
                     <th className="px-6 py-4">Course/Grade</th>
                     <th className="px-6 py-4">Contact Details</th>
-                    <th className="px-6 py-4">Date</th>
+                    <th className="px-6 py-4">Message</th>
                     <th className="px-6 py-4">Status</th>
                     <th className="px-6 py-4">Action</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-100 dark:divide-slate-700">
-                  {leads.map((lead) => (
-                    <tr key={lead.id} className="hover:bg-slate-50/50 dark:hover:bg-slate-700/30 transition-colors">
-                      <td className="px-6 py-4">
-                        <div className="font-bold text-slate-900 dark:text-white">{lead.name}</div>
-                      </td>
-                      <td className="px-6 py-4">
-                        <span className="px-3 py-1 rounded-full bg-teal-50 dark:bg-teal-900/30 text-teal-700 dark:text-teal-400 text-xs font-bold uppercase">
-                          {lead.grade}
-                        </span>
-                      </td>
-                      <td className="px-6 py-4">
-                        <div className="flex flex-col space-y-1 text-sm text-slate-600 dark:text-slate-300">
-                          <span className="flex items-center space-x-2">
-                            <Mail className="h-3 w-3" />
-                            <span>{lead.email || 'N/A'}</span>
-                          </span>
-                          <span className="flex items-center space-x-2">
-                            <Phone className="h-3 w-3" />
-                            <span>{lead.phone}</span>
-                          </span>
-                        </div>
-                      </td>
-                      <td className="px-6 py-4 text-sm text-slate-500 dark:text-slate-400">
-                        {lead.date}
-                      </td>
-                      <td className="px-6 py-4">
-                        <span className={`px-3 py-1 rounded-full text-[10px] font-extrabold uppercase ${
-                          lead.status === 'New' ? 'bg-blue-100 text-blue-700' :
-                          lead.status === 'Contacted' ? 'bg-amber-100 text-amber-700' :
-                          'bg-emerald-100 text-emerald-700'
-                        }`}>
-                          {lead.status}
-                        </span>
-                      </td>
-                      <td className="px-6 py-4 text-right">
-                        <button className="text-slate-400 hover:text-teal-600">
-                          <ChevronRight className="h-5 w-5" />
-                        </button>
+                  {leadsList.length === 0 ? (
+                    <tr>
+                      <td colSpan={6} className="px-6 py-12 text-center text-slate-500 dark:text-slate-400 italic">
+                        No inquiries found yet.
                       </td>
                     </tr>
-                  ))}
+                  ) : (
+                    leadsList.map((lead) => (
+                      <tr key={lead.id} className="hover:bg-slate-50/50 dark:hover:bg-slate-700/30 transition-colors">
+                        <td className="px-6 py-4">
+                          <div className="font-bold text-slate-900 dark:text-white">{lead.name}</div>
+                        </td>
+                        <td className="px-6 py-4">
+                          <span className="px-3 py-1 rounded-full bg-teal-50 dark:bg-teal-900/30 text-teal-700 dark:text-teal-400 text-xs font-bold uppercase">
+                            {lead.grade}
+                          </span>
+                        </td>
+                        <td className="px-6 py-4">
+                          <div className="flex flex-col space-y-1 text-sm text-slate-600 dark:text-slate-300">
+                            <span className="flex items-center space-x-2">
+                              <Mail className="h-3 w-3" />
+                              <span className="truncate max-w-[150px]">{lead.email || 'N/A'}</span>
+                            </span>
+                            <span className="flex items-center space-x-2">
+                              <Phone className="h-3 w-3" />
+                              <span>{lead.phone}</span>
+                            </span>
+                          </div>
+                        </td>
+                        <td className="px-6 py-4">
+                          <div className="flex items-start space-x-2 text-sm text-slate-600 dark:text-slate-400 max-w-[200px]">
+                            <MessageSquare className="h-4 w-4 shrink-0 mt-1 opacity-50" />
+                            <span className="line-clamp-2">{lead.message}</span>
+                          </div>
+                        </td>
+                        <td className="px-6 py-4">
+                          <span className={`px-3 py-1 rounded-full text-[10px] font-extrabold uppercase ${
+                            lead.status === 'New' ? 'bg-blue-100 text-blue-700' :
+                            lead.status === 'Contacted' ? 'bg-amber-100 text-amber-700' :
+                            'bg-emerald-100 text-emerald-700'
+                          }`}>
+                            {lead.status}
+                          </span>
+                        </td>
+                        <td className="px-6 py-4 text-right">
+                          <button className="text-slate-400 hover:text-teal-600">
+                            <ChevronRight className="h-5 w-5" />
+                          </button>
+                        </td>
+                      </tr>
+                    ))
+                  )}
                 </tbody>
               </table>
             </div>

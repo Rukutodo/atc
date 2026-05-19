@@ -1,14 +1,24 @@
 import { NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
+import { supabaseAdmin } from '@/lib/supabase';
 
 export async function POST(req: Request) {
   try {
     const { name, email, phone, grade, message } = await req.json();
 
-    // NOTE: In a real production environment, you should use environment variables
-    // for SMTP credentials (e.g., Gmail App Password, SendGrid Key, etc.)
-    // For this demonstration, we'll configure the transporter logic.
-    // Validate environment variables
+    // 1. Save to Database
+    const { error: dbError } = await supabaseAdmin
+      .from('leads')
+      .insert([
+        { name, email: email || null, phone, grade, message, status: 'New' }
+      ]);
+
+    if (dbError) {
+      console.error('Supabase Error:', dbError);
+      // We continue with email even if DB fails, or handle as needed
+    }
+
+    // 2. Validate environment variables for Email
     if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
       console.error('Missing EMAIL_USER or EMAIL_PASS environment variables');
       return NextResponse.json({ 
