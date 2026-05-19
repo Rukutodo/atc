@@ -1,7 +1,6 @@
-'use client';
-
-import React, { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { getSession } from '@/lib/auth';
+import { redirect } from 'next/navigation';
+import { cookies } from 'next/headers';
 import { 
   Users, 
   Mail, 
@@ -15,9 +14,12 @@ import {
   Filter
 } from 'lucide-react';
 
-const AdminDashboard = () => {
-  const router = useRouter();
-  const [isLoading, setIsLoading] = useState(true);
+const AdminDashboard = async () => {
+  const session = await getSession();
+
+  if (!session) {
+    redirect('/admin');
+  }
 
   // Simulated static leads since there is no DB yet
   const leads = [
@@ -26,25 +28,6 @@ const AdminDashboard = () => {
     { id: 3, name: 'Kiran Kumar', email: 'kiran.k@outlook.com', phone: '9346801502', grade: 'Online Classes', date: '5 hours ago', status: 'New' },
     { id: 4, name: 'Anjali V.', email: 'anjali.v@gmail.com', phone: '9123456789', grade: 'SSC 9th', date: '1 day ago', status: 'Enrolled' },
   ];
-
-  useEffect(() => {
-    // In a real app, we'd verify the session on the server via Middleware
-    // For this prototype, we'll just check if the session cookie exists
-    const hasSession = document.cookie.includes('session');
-    if (!hasSession) {
-      router.push('/admin');
-    } else {
-      setIsLoading(false);
-    }
-  }, [router]);
-
-  const handleLogout = async () => {
-    // Clear cookie (simple way for this prototype)
-    document.cookie = 'session=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
-    router.push('/admin');
-  };
-
-  if (isLoading) return null;
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-900 flex">
@@ -58,28 +41,34 @@ const AdminDashboard = () => {
         </div>
         
         <nav className="flex-1 p-4 space-y-2 mt-4">
-          <button className="flex items-center space-x-3 w-full p-3 bg-teal-50 dark:bg-teal-900/30 text-teal-700 dark:text-teal-400 rounded-xl font-bold transition-all">
+          <button className="flex items-center space-x-3 w-full p-3 bg-teal-50 dark:bg-teal-900/30 text-teal-700 dark:text-teal-400 rounded-xl font-bold transition-all text-left">
             <LayoutDashboard className="h-5 w-5" />
             <span>Leads Dashboard</span>
           </button>
-          <button className="flex items-center space-x-3 w-full p-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-700 rounded-xl font-medium transition-all">
+          <button className="flex items-center space-x-3 w-full p-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-700 rounded-xl font-medium transition-all text-left">
             <Users className="h-5 w-5" />
             <span>Students</span>
           </button>
-          <button className="flex items-center space-x-3 w-full p-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-700 rounded-xl font-medium transition-all">
+          <button className="flex items-center space-x-3 w-full p-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-700 rounded-xl font-medium transition-all text-left">
             <Clock className="h-5 w-5" />
             <span>History</span>
           </button>
         </nav>
 
         <div className="p-4 border-t border-slate-100 dark:border-slate-700">
-          <button 
-            onClick={handleLogout}
-            className="flex items-center space-x-3 w-full p-3 text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-xl font-medium transition-all"
-          >
-            <LogOut className="h-5 w-5" />
-            <span>Sign Out</span>
-          </button>
+          <form action={async () => {
+            'use server';
+            (await cookies()).delete('session');
+            redirect('/admin');
+          }}>
+            <button 
+              type="submit"
+              className="flex items-center space-x-3 w-full p-3 text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-xl font-medium transition-all text-left"
+            >
+              <LogOut className="h-5 w-5" />
+              <span>Sign Out</span>
+            </button>
+          </form>
         </div>
       </aside>
 

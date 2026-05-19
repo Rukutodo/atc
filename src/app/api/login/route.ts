@@ -15,7 +15,13 @@ export async function POST(req: Request) {
       const session = await encrypt({ user: email, expires });
 
       // Save the session in a cookie
-      (await cookies()).set('session', session, { expires, httpOnly: true });
+      (await cookies()).set('session', session, { 
+        expires, 
+        httpOnly: true, 
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: 'lax',
+        path: '/',
+      });
 
       return NextResponse.json({ message: 'Logged in successfully' }, { status: 200 });
     }
