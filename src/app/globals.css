@@ -54,48 +54,36 @@
   }
 }
 
-/* --- Theme Specific Overrides --- */
+/* --- Global Utilities (Theme Aware) --- */
 
-/* India Theme Overrides */
-.india {
-    background-image: radial-gradient(circle at top right, #fff7ed 0%, #ffffff 50%, #f0fdf4 100%);
-}
+.text-teal-600 { color: var(--primary) !important; }
+.bg-teal-600 { background-color: var(--primary) !important; }
+.bg-teal-50 { background-color: var(--primary); opacity: 0.1; }
+.border-teal-600 { border-color: var(--primary) !important; }
+
+/* Handle specific India theme overrides that differ from the primary color */
 .india .text-teal-600 { color: #138808 !important; }
-.india .bg-teal-600 { background-color: #FF9933 !important; }
-.india .hover\:bg-teal-700:hover { background-color: #ea580c !important; }
-.india .bg-teal-50 { background-color: #fff7ed !important; }
-.india .border-teal-600 { border-color: #FF9933 !important; }
-.india .text-slate-900 { color: #000080 !important; }
-.india .text-slate-600 { color: #334155 !important; }
-.india .bg-secondary { background-color: #f0fdf4 !important; }
+.india .border-teal-600 { border-color: #138808 !important; }
 
-/* Dark Theme Overrides */
-.dark .text-teal-600 { color: #14b8a6 !important; }
-.dark .bg-teal-600 { background-color: #14b8a6 !important; }
-.dark .bg-teal-50 { background-color: #134e4a !important; }
-.dark .border-teal-600 { border-color: #14b8a6 !important; }
+/* Background Overrides for Light Theme specifically */
+.light .bg-secondary { background-color: #f8fafc !important; }
 
-/* Light Theme Overrides */
-.light .text-teal-600 { color: #0d9488 !important; }
-.light .bg-teal-600 { background-color: #0d9488 !important; }
-.light .bg-teal-50 { background-color: #f0fdfa !important; }
-.light .border-teal-600 { border-color: #0d9488 !important; }
-
-/* Text Gradients */
 .text-gradient {
   @apply bg-clip-text text-transparent bg-gradient-to-r from-teal-600 to-emerald-600;
 }
+
 .india .text-gradient {
   background-image: linear-gradient(to right, #FF9933, #138808);
 }
+
 .dark .text-gradient {
   background-image: linear-gradient(to right, #14b8a6, #34d399);
 }
 
-/* Card Hover Effects */
 .card-hover {
   @apply transition-all duration-300 hover:shadow-xl hover:-translate-y-1 border border-transparent;
 }
+
 .light .card-hover { @apply hover:border-teal-100; }
 .dark .card-hover { @apply hover:border-teal-900; }
 .india .card-hover { @apply hover:border-orange-100 shadow-orange-100/20; }
