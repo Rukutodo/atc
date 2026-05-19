@@ -71,11 +71,10 @@ const Hero = () => {
 >
   <div className="relative z-10 rounded-3xl overflow-hidden shadow-2xl border-8 border-white dark:border-slate-800 aspect-[4/5]">
      <img 
-       src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=800&h=1000" 
-       alt="Students learning together" 
+       src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&q=80&w=800&h=1000" 
+       alt="Group of children studying diligently" 
        className="object-cover w-full h-full"
-     />
-     {/* Overlay for cohesive teal tint */}
+     />     {/* Overlay for cohesive teal tint */}
      <div className="absolute inset-0 bg-teal-600/10 mix-blend-multiply" />
   </div>
             
