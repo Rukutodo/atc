@@ -20,7 +20,7 @@ const Hero = () => {
           >
             <div className="inline-flex items-center space-x-2 bg-teal-50 dark:bg-teal-900/30 text-teal-700 dark:text-teal-400 px-4 py-2 rounded-full text-sm font-bold mb-6">
               <Star className="h-4 w-4 fill-current" />
-              <span>Leading Tutoring Service in Mumbai</span>
+              <span>Leading Tutoring Service in Visakhapatnam</span>
             </div>
             
             <h1 className="text-5xl md:text-6xl font-extrabold text-slate-900 dark:text-white leading-tight mb-6">
