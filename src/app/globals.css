@@ -1,17 +1,5 @@
 @import "tailwindcss";
 
-@theme {
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-secondary: var(--secondary);
-  --color-accent: var(--accent);
-  --color-muted: var(--muted);
-  --color-border: var(--border);
-  
-  --background-color-background: var(--background);
-  --text-color-foreground: var(--foreground);
-}
-
 @layer base {
   :root, .light {
     --background: #ffffff;
@@ -44,11 +32,11 @@
   .india {
     --background: #ffffff;
     --foreground: #1e293b;
-    --primary: #FF9933; /* Saffron */
+    --primary: #FF9933;
     --primary-foreground: #ffffff;
-    --secondary: #f0fdf4; /* Light Green tint */
-    --accent: #000080; /* Navy Blue */
-    --border: #138808; /* India Green */
+    --secondary: #f0fdf4;
+    --accent: #000080;
+    --border: #138808;
     --card-bg: #f8fafc;
     --input-bg: #ffffff;
     --input-text: #0f172a;
@@ -58,24 +46,29 @@
     color: var(--foreground);
     background: var(--background);
     font-family: 'Inter', sans-serif;
-    transition: background-color 0.3s ease, color 0.3s ease;
-  }
-
-  * {
-    @apply border-[--color-border];
   }
 }
+
+/* Explicit color overrides because some elements use Tailwind color utilities that aren't mapped to vars yet */
+.india .text-teal-600 { color: #138808 !important; }
+.india .bg-teal-600 { background-color: #FF9933 !important; }
+.india .bg-teal-50 { background-color: #f0fdf4 !important; }
+.india .border-teal-600 { border-color: #138808 !important; }
+
+.dark .text-teal-600 { color: #14b8a6 !important; }
+.dark .bg-teal-600 { background-color: #14b8a6 !important; }
+.dark .bg-teal-50 { background-color: #134e4a !important; }
 
 .text-gradient {
   @apply bg-clip-text text-transparent bg-gradient-to-r from-teal-600 to-emerald-600;
 }
 
 .india .text-gradient {
-  @apply from-[#FF9933] to-[#138808];
+  background-image: linear-gradient(to right, #FF9933, #138808);
 }
 
 .dark .text-gradient {
-  @apply from-teal-400 to-emerald-400;
+  background-image: linear-gradient(to right, #14b8a6, #34d399);
 }
 
 .card-hover {
