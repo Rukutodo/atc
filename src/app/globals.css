@@ -16,12 +16,20 @@
   :root {
     --background: #ffffff;
     --foreground: #171717;
+    --card-bg: #ffffff;
+    --input-bg: #ffffff;
+    --input-text: #111827;
   }
   
   @media (prefers-color-scheme: dark) {
     :root {
       --background: #0a0a0a;
-      --foreground: #ededed;
+      --foreground: #f3f4f6;
+      --card-bg: #111827;
+      --input-bg: #1f2937;
+      --input-text: #f9fafb;
+      --color-secondary: #064e3b;
+      --color-border: #374151;
     }
   }
 
@@ -37,9 +45,9 @@
 }
 
 .text-gradient {
-  @apply bg-clip-text text-transparent bg-gradient-to-r from-teal-600 to-emerald-600;
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-teal-600 to-emerald-600 dark:from-teal-400 dark:to-emerald-400;
 }
 
 .card-hover {
-  @apply transition-all duration-300 hover:shadow-xl hover:-translate-y-1 border border-transparent hover:border-teal-100;
+  @apply transition-all duration-300 hover:shadow-xl hover:-translate-y-1 border border-transparent hover:border-teal-100 dark:hover:border-teal-900;
 }
