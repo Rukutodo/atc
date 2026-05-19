@@ -4,7 +4,7 @@ import { getSession } from '@/lib/auth';
 
 export async function PATCH(
   req: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const session = await getSession();
@@ -13,7 +13,7 @@ export async function PATCH(
     }
 
     const { status } = await req.json();
-    const { id } = params;
+    const { id } = await params;
 
     const { error } = await supabaseAdmin
       .from('leads')
