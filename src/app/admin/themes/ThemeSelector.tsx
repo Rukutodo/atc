@@ -61,10 +61,10 @@ const ThemeSelector = () => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl relative">
       {isUpdating && (
-        <div className="absolute inset-0 z-20 flex flex-col items-center justify-center bg-white/60 dark:bg-black/60 backdrop-blur-md rounded-3xl text-center p-4">
+        <div className="absolute inset-0 z-20 flex flex-col items-center justify-center bg-[var(--card-bg)]/60 backdrop-blur-md rounded-3xl text-center p-4">
           <Loader2 className="h-10 w-10 animate-spin text-teal-600 mb-4" />
-          <p className="font-bold text-slate-900 dark:text-white">Broadcasting Global Change...</p>
-          <p className="text-xs text-slate-500 mt-1">This will update the website for all users instantly.</p>
+          <p className="font-bold text-[var(--foreground)]">Broadcasting Global Change...</p>
+          <p className="text-xs text-[var(--foreground)]/50 mt-1">This will update the website for all users instantly.</p>
         </div>
       )}
       
@@ -75,7 +75,7 @@ const ThemeSelector = () => {
           className={`group relative flex flex-col items-center justify-center px-6 py-10 rounded-3xl border-2 transition-all duration-500 overflow-hidden ${
             currentTheme === t.id
               ? 'border-teal-600 ring-4 ring-teal-600/10 shadow-lg'
-              : 'border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 hover:border-teal-400'
+              : 'border-[var(--border)] bg-[var(--card-bg)] hover:border-teal-400'
           }`}
         >
           <div className={`absolute inset-0 opacity-5 bg-gradient-to-br ${t.colors}`} />
@@ -83,16 +83,16 @@ const ThemeSelector = () => {
           <div className={`relative z-10 p-5 rounded-2xl mb-4 transition-transform duration-500 group-hover:scale-110 ${
             currentTheme === t.id 
               ? 'bg-teal-600 text-white shadow-xl shadow-teal-600/20' 
-              : 'bg-slate-100 dark:bg-slate-700 text-slate-500'
+              : 'bg-[var(--secondary)] text-[var(--foreground)]/50'
           }`}>
             <t.icon className="h-10 w-10" />
           </div>
 
           <div className="relative z-10 text-center">
             <p className={`font-black text-xl tracking-tight ${
-                currentTheme === t.id ? 'text-slate-900 dark:text-white' : 'text-slate-700 dark:text-slate-300'
+                currentTheme === t.id ? 'text-[var(--foreground)]' : 'text-[var(--foreground)]/80'
             }`}>{t.label}</p>
-            <p className="text-sm font-medium text-slate-500 dark:text-slate-400 mt-1">{t.sub}</p>
+            <p className="text-sm font-medium text-[var(--foreground)]/50 mt-1">{t.sub}</p>
           </div>
 
           {currentTheme === t.id && (

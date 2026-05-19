@@ -27,20 +27,20 @@ const StudentsPage = async () => {
   const studentList = students || [];
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-900 flex">
+    <div className="min-h-screen bg-[var(--background)] flex">
       <AdminSidebar />
 
       {/* Main Content */}
       <main className="flex-1 overflow-y-auto">
-        <header className="bg-white dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 sticky top-0 z-10 px-8 py-4 flex items-center justify-between">
-          <h1 className="text-2xl font-bold text-slate-900 dark:text-white">Student Management</h1>
+        <header className="bg-[var(--card-bg)] border-b border-[var(--border)] sticky top-0 z-10 px-8 py-4 flex items-center justify-between">
+          <h1 className="text-2xl font-bold text-[var(--foreground)]">Student Management</h1>
           
           <div className="flex items-center space-x-4">
             <div className="relative hidden md:block">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-[var(--foreground)]/40" />
               <input 
                 placeholder="Search students..." 
-                className="pl-10 pr-4 py-2 rounded-lg border border-slate-200 dark:border-slate-700 dark:bg-slate-900 dark:text-white outline-none focus:ring-2 focus:ring-teal-500 text-sm w-64"
+                className="pl-10 pr-4 py-2 rounded-lg border border-[var(--border)] bg-[var(--input-bg)] text-[var(--input-text)] outline-none focus:ring-2 focus:ring-teal-500 text-sm w-64"
               />
             </div>
           </div>

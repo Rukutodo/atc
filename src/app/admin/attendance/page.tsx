@@ -25,14 +25,14 @@ const AttendancePage = async () => {
   }
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-900 flex">
+    <div className="min-h-screen bg-[var(--background)] flex">
       <AdminSidebar />
 
       {/* Main Content */}
       <main className="flex-1 overflow-y-auto">
-        <header className="bg-white dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 sticky top-0 z-10 px-8 py-4 flex items-center justify-between">
-          <h1 className="text-2xl font-bold text-slate-900 dark:text-white">Daily Attendance</h1>
-          <div className="text-sm font-medium text-slate-500">
+        <header className="bg-[var(--card-bg)] border-b border-[var(--border)] sticky top-0 z-10 px-8 py-4 flex items-center justify-between">
+          <h1 className="text-2xl font-bold text-[var(--foreground)]">Daily Attendance</h1>
+          <div className="text-sm font-medium text-[var(--foreground)]/50">
             {new Date().toLocaleDateString('en-IN', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
           </div>
         </header>

@@ -37,41 +37,41 @@ const AdminLogin = () => {
   };
 
   return (
-    <div className="min-h-screen bg-secondary dark:bg-slate-900 flex items-center justify-center px-4">
-      <div className="max-w-md w-full bg-white dark:bg-slate-800 rounded-3xl shadow-xl p-8 border border-slate-100 dark:border-slate-700">
+    <div className="min-h-screen bg-[var(--background)] flex items-center justify-center px-4">
+      <div className="max-w-md w-full bg-[var(--card-bg)] rounded-3xl shadow-xl p-8 border border-[var(--border)]">
         <div className="text-center mb-10">
-          <div className="bg-teal-100 dark:bg-teal-900/30 h-16 w-16 rounded-2xl flex items-center justify-center mx-auto mb-6">
-            <Lock className="h-8 w-8 text-teal-600 dark:text-teal-400" />
+          <div className="bg-teal-500/10 h-16 w-16 rounded-2xl flex items-center justify-center mx-auto mb-6">
+            <Lock className="h-8 w-8 text-teal-600" />
           </div>
-          <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-2">Admin Portal</h2>
-          <p className="text-slate-500 dark:text-slate-400">Please sign in to access the dashboard</p>
+          <h2 className="text-3xl font-bold text-[var(--foreground)] mb-2">Admin Portal</h2>
+          <p className="text-[var(--foreground)]/50">Please sign in to access the dashboard</p>
         </div>
 
         <form onSubmit={handleLogin} className="space-y-6">
           <div>
-            <label className="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2">Email Address</label>
+            <label className="block text-sm font-bold text-[var(--foreground)]/80 mb-2">Email Address</label>
             <input
               type="email"
               value={email}
               readOnly
-              className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900/50 text-slate-500 dark:text-slate-400 outline-none"
+              className="w-full px-4 py-3 rounded-xl border border-[var(--border)] bg-[var(--secondary)] text-[var(--foreground)]/40 outline-none"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2">Password</label>
+            <label className="block text-sm font-bold text-[var(--foreground)]/80 mb-2">Password</label>
             <input
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="••••••••"
               required
-              className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white focus:ring-2 focus:ring-teal-500 outline-none transition-all"
+              className="w-full px-4 py-3 rounded-xl border border-[var(--border)] bg-[var(--input-bg)] text-[var(--input-text)] focus:ring-2 focus:ring-teal-500 outline-none transition-all"
             />
           </div>
 
           {error && (
-            <div className="flex items-center space-x-2 text-red-600 bg-red-50 dark:bg-red-900/20 p-4 rounded-xl">
+            <div className="flex items-center space-x-2 text-red-600 bg-red-500/10 p-4 rounded-xl">
               <AlertCircle className="h-5 w-5" />
               <span className="text-sm font-medium">{error}</span>
             </div>
@@ -79,7 +79,7 @@ const AdminLogin = () => {
 
           <button
             disabled={isLoading}
-            className="w-full bg-teal-600 text-white py-4 rounded-xl font-bold text-lg hover:bg-teal-700 transition-all shadow-lg shadow-teal-100 dark:shadow-teal-900/20 flex items-center justify-center disabled:opacity-70"
+            className="w-full bg-teal-600 text-white py-4 rounded-xl font-bold text-lg hover:bg-teal-700 transition-all shadow-lg shadow-teal-500/10 flex items-center justify-center disabled:opacity-70"
           >
             {isLoading ? <Loader2 className="h-6 w-6 animate-spin" /> : 'Access Dashboard'}
           </button>
@@ -88,7 +88,7 @@ const AdminLogin = () => {
         <div className="mt-8 text-center">
           <button 
             onClick={() => router.push('/')}
-            className="text-slate-500 dark:text-slate-400 hover:text-teal-600 dark:hover:text-teal-400 text-sm font-medium transition-colors"
+            className="text-[var(--foreground)]/50 hover:text-teal-600 text-sm font-medium transition-colors"
           >
             ← Back to Home
           </button>

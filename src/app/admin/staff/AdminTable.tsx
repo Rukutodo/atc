@@ -99,7 +99,7 @@ const AdminTable = ({ initialAdmins }: { initialAdmins: any[] }) => {
               />
             </div>
           </div>
-          <div className="bg-amber-50 dark:bg-amber-900/10 p-4 rounded-xl border border-amber-100 dark:border-amber-900/20 text-xs text-amber-700 dark:text-amber-500">
+          <div className="bg-amber-500/10 p-4 rounded-xl border border-amber-500/20 text-xs text-amber-600">
             <strong>Note:</strong> Upon saving, an email will be sent to the staff member with these credentials.
           </div>
           <button 
@@ -135,7 +135,7 @@ const AdminTable = ({ initialAdmins }: { initialAdmins: any[] }) => {
                 </td>
                 <td className="px-6 py-4 text-[var(--foreground)]/70">{admin.email}</td>
                 <td className="px-6 py-4">
-                  <span className="px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-[var(--foreground)]/60 text-[10px] font-extrabold uppercase flex items-center w-fit space-x-1 border border-[var(--border)]">
+                  <span className="px-3 py-1 rounded-full bg-[var(--secondary)] text-[var(--foreground)]/60 text-[10px] font-extrabold uppercase flex items-center w-fit space-x-1 border border-[var(--border)]">
                     <Shield className="h-3 w-3" />
                     <span>{admin.role}</span>
                   </span>

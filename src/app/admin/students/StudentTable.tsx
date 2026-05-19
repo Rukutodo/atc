@@ -164,7 +164,7 @@ const StudentTable = ({ initialStudents }: { initialStudents: any[] }) => {
                     </div>
                   </td>
                   <td className="px-6 py-4">
-                    <span className="px-3 py-1 rounded-full bg-emerald-100/50 text-emerald-700 dark:text-emerald-400 text-[10px] font-extrabold uppercase flex items-center w-fit space-x-1 border border-emerald-200/50">
+                    <span className="px-3 py-1 rounded-full bg-emerald-100/50 text-emerald-700 text-[10px] font-extrabold uppercase flex items-center w-fit space-x-1 border border-emerald-200/50">
                       <CheckCircle className="h-3 w-3" />
                       <span>{student.status}</span>
                     </span>
@@ -173,13 +173,13 @@ const StudentTable = ({ initialStudents }: { initialStudents: any[] }) => {
                     <div className="flex justify-end space-x-2">
                       {editingId === student.id ? (
                         <>
-                          <button onClick={() => handleUpdate(student.id)} className="p-2 text-emerald-600 hover:bg-emerald-50 rounded-lg"><Save className="h-4 w-4" /></button>
-                          <button onClick={() => setEditingId(null)} className="p-2 text-[var(--foreground)]/40 hover:bg-slate-50 rounded-lg"><X className="h-4 w-4" /></button>
+                          <button onClick={() => handleUpdate(student.id)} className="p-2 text-emerald-600 hover:bg-emerald-500/10 rounded-lg"><Save className="h-4 w-4" /></button>
+                          <button onClick={() => setEditingId(null)} className="p-2 text-[var(--foreground)]/40 hover:bg-[var(--foreground)]/5 rounded-lg"><X className="h-4 w-4" /></button>
                         </>
                       ) : (
                         <>
                           <button onClick={() => startEditing(student)} className="p-2 text-[var(--foreground)]/40 hover:text-[var(--primary)] hover:bg-[var(--primary)]/5 rounded-lg"><Edit2 className="h-4 w-4" /></button>
-                          <button onClick={() => handleDelete(student.id)} className="p-2 text-[var(--foreground)]/40 hover:text-red-600 hover:bg-red-50 rounded-lg"><Trash2 className="h-4 w-4" /></button>
+                          <button onClick={() => handleDelete(student.id)} className="p-2 text-[var(--foreground)]/40 hover:text-red-600 hover:bg-red-500/10 rounded-lg"><Trash2 className="h-4 w-4" /></button>
                         </>
                       )}
                     </div>
