@@ -42,8 +42,10 @@ export default async function RootLayout({
             __html: `
               (function() {
                 try {
-                  // Direct DB-to-DOM sync
                   var theme = '${activeTheme}';
+                  var saved = localStorage.getItem('theme');
+                  // Priority: Database theme > LocalStorage theme
+                  // If we want it strictly global, we use the db theme.
                   document.documentElement.className = 'scroll-smooth ' + theme;
                   document.documentElement.setAttribute('data-theme', theme);
                 } catch (e) {}
