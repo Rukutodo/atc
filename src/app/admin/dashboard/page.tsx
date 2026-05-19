@@ -6,6 +6,7 @@ import AdminSidebar from '@/components/admin/AdminSidebar';
 import { 
   Search,
   Filter,
+  Mail,
 } from 'lucide-react';
 
 const AdminDashboard = async () => {
