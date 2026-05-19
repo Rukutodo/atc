@@ -1,61 +1,64 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #0d9488;
-  --color-primary-foreground: #ffffff;
-  --color-secondary: #f0fdfa;
-  --color-accent: #f59e0b;
-  --color-muted: #64748b;
-  --color-border: #e2e8f0;
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-accent: var(--accent);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
   
-  --background-color-background: #ffffff;
-  --text-color-foreground: #171717;
+  --background-color-background: var(--background);
+  --text-color-foreground: var(--foreground);
 }
 
 @layer base {
-  :root {
+  :root, .light {
     --background: #ffffff;
     --foreground: #171717;
+    --primary: #0d9488;
+    --primary-foreground: #ffffff;
+    --secondary: #f0fdfa;
+    --accent: #f59e0b;
+    --muted: #64748b;
+    --border: #e2e8f0;
     --card-bg: #ffffff;
     --input-bg: #ffffff;
     --input-text: #111827;
   }
   
-  /* Standard Dark Theme */
-  :root.dark {
+  .dark {
     --background: #0a0a0a;
     --foreground: #f3f4f6;
+    --primary: #14b8a6;
+    --primary-foreground: #ffffff;
+    --secondary: #064e3b;
+    --accent: #f59e0b;
+    --muted: #94a3b8;
+    --border: #374151;
     --card-bg: #111827;
     --input-bg: #1f2937;
     --input-text: #f9fafb;
-    --color-secondary: #064e3b;
-    --color-border: #374151;
   }
 
-  /* India / Republic Day Theme */
-  :root.india {
+  .india {
     --background: #ffffff;
     --foreground: #1e293b;
+    --primary: #FF9933; /* Saffron */
+    --primary-foreground: #ffffff;
+    --secondary: #f0fdf4; /* Light Green tint */
+    --accent: #000080; /* Navy Blue */
+    --border: #138808; /* India Green */
     --card-bg: #f8fafc;
     --input-bg: #ffffff;
     --input-text: #0f172a;
-    --color-primary: #FF9933; /* Saffron */
-    --color-primary-foreground: #ffffff;
-    --color-secondary: #f0fdf4; /* Very light Green tint */
-    --color-accent: #000080; /* Navy Blue (Ashoka Chakra) */
-    --color-border: #138808; /* India Green */
   }
-  
-  /* Apply India Green to specific elements in India theme */
-  :root.india .text-teal-600 { color: #138808; }
-  :root.india .bg-teal-600 { background-color: #FF9933; }
-  :root.india .bg-teal-50 { background-color: #f0fdf4; }
-  :root.india .border-teal-600 { border-color: #138808; }
 
   body {
     color: var(--foreground);
     background: var(--background);
     font-family: 'Inter', sans-serif;
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
 
   * {
@@ -64,17 +67,25 @@
 }
 
 .text-gradient {
-  @apply bg-clip-text text-transparent bg-gradient-to-r from-teal-600 to-emerald-600 dark:from-teal-400 dark:to-emerald-400;
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-teal-600 to-emerald-600;
 }
 
-:root.india .text-gradient {
+.india .text-gradient {
   @apply from-[#FF9933] to-[#138808];
 }
 
-.card-hover {
-  @apply transition-all duration-300 hover:shadow-xl hover:-translate-y-1 border border-transparent hover:border-teal-100 dark:hover:border-teal-900;
+.dark .text-gradient {
+  @apply from-teal-400 to-emerald-400;
 }
 
-:root.india .card-hover {
+.card-hover {
+  @apply transition-all duration-300 hover:shadow-xl hover:-translate-y-1 border border-transparent hover:border-teal-100;
+}
+
+.india .card-hover {
   @apply hover:border-[#138808]/20;
+}
+
+.dark .card-hover {
+  @apply hover:border-teal-900;
 }
