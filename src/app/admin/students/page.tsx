@@ -5,6 +5,8 @@ import AdminSidebar from '@/components/admin/AdminSidebar';
 import StudentTable from './StudentTable';
 import { Search } from 'lucide-react';
 
+export const dynamic = 'force-dynamic';
+
 const StudentsPage = async () => {
   const session = await getSession();
 

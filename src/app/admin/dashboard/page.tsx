@@ -7,7 +7,10 @@ import {
   Search,
   Filter,
   Mail,
+  Phone,
 } from 'lucide-react';
+
+export const dynamic = 'force-dynamic';
 
 const AdminDashboard = async () => {
   const session = await getSession();

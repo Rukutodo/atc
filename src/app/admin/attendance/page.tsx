@@ -4,6 +4,8 @@ import { supabaseAdmin } from '@/lib/supabase';
 import AdminSidebar from '@/components/admin/AdminSidebar';
 import AttendanceTracker from './AttendanceTracker';
 
+export const dynamic = 'force-dynamic';
+
 const AttendancePage = async () => {
   const session = await getSession();
 

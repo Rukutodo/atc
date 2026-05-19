@@ -11,6 +11,8 @@ export const metadata: Metadata = {
   keywords: "Acharya Tutorials, ICSE Tuitions, SSC Tuitions, CBSE Tuitions, Spoken English, Spoken Hindi, Home Tutoring Visakhapatnam",
 };
 
+export const dynamic = 'force-dynamic';
+
 export default async function RootLayout({
   children,
 }: Readonly<{
