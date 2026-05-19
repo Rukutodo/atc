@@ -48,14 +48,10 @@ const Hero = () => {
               </a>
             </div>
 
-            <div className="mt-12 grid grid-cols-3 gap-8">
+            <div className="mt-12 grid grid-cols-2 gap-8">
               <div className="flex flex-col">
-                <span className="text-3xl font-bold text-slate-900 dark:text-white">500+</span>
+                <span className="text-3xl font-bold text-slate-900 dark:text-white">200+</span>
                 <span className="text-slate-500 dark:text-slate-400 text-sm">Students Taught</span>
-              </div>
-              <div className="flex flex-col">
-                <span className="text-3xl font-bold text-slate-900 dark:text-white">10+</span>
-                <span className="text-slate-500 dark:text-slate-400 text-sm">Expert Teachers</span>
               </div>
               <div className="flex flex-col">
                 <span className="text-3xl font-bold text-slate-900 dark:text-white">98%</span>
