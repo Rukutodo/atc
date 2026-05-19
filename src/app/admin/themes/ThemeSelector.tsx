@@ -2,47 +2,29 @@
 
 import React, { useState, useEffect } from 'react';
 import { Sun, Moon, Check, Flag, Loader2 } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 
 type Theme = 'light' | 'dark' | 'india';
 
 const ThemeSelector = () => {
   const [currentTheme, setCurrentTheme] = useState<Theme>('light');
   const [isUpdating, setIsUpdating] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
-    // Fetch initial global theme from DB
-    const fetchTheme = async () => {
-      try {
-        const res = await fetch('/api/theme');
-        const data = await res.json();
-        if (data.theme) {
-          setCurrentTheme(data.theme);
-          updateDom(data.theme);
-        }
-      } catch (err) {
-        console.error('Failed to fetch initial theme');
-      }
+    // Sync UI with the actual class on the HTML element
+    const detectTheme = () => {
+        if (document.documentElement.classList.contains('india')) return 'india';
+        if (document.documentElement.classList.contains('dark')) return 'dark';
+        return 'light';
     };
-    fetchTheme();
+    setCurrentTheme(detectTheme());
   }, []);
-
-  const updateDom = (theme: Theme) => {
-    const root = document.documentElement;
-    // Remove all possible theme classes
-    root.classList.remove('light', 'dark', 'india');
-    // Add the new one
-    root.classList.add(theme);
-    root.setAttribute('data-theme', theme);
-    // Force a small delay then re-apply to ensure body transition triggers
-    setTimeout(() => {
-        root.className = theme; // Aggressive force
-    }, 10);
-  };
 
   const setTheme = async (theme: Theme) => {
     setIsUpdating(true);
     try {
-      // 1. Save to DB (for other users)
+      // 1. Update the Database (This makes it change for everyone)
       const res = await fetch('/api/theme', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -50,13 +32,18 @@ const ThemeSelector = () => {
       });
 
       if (res.ok) {
-        // 2. Update current UI
+        // 2. Immediate local feedback
         setCurrentTheme(theme);
-        updateDom(theme);
-        localStorage.setItem('theme', theme);
+        document.documentElement.className = `scroll-smooth ${theme}`;
+        document.documentElement.setAttribute('data-theme', theme);
         
-        // 3. Optional: Refresh to force server-side layout sync
-        // window.location.reload(); 
+        // 3. Force Next.js to re-fetch the layout data from the server
+        router.refresh();
+        
+        // 4. Final safety refresh after a small delay to ensure DB propagation
+        setTimeout(() => {
+            window.location.reload();
+        }, 500);
       }
     } catch (error) {
       console.error('Failed to update global theme');
@@ -74,8 +61,9 @@ const ThemeSelector = () => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl relative">
       {isUpdating && (
-        <div className="absolute inset-0 z-20 flex items-center justify-center bg-white/40 dark:bg-black/40 backdrop-blur-sm rounded-2xl">
-          <Loader2 className="h-10 w-10 animate-spin text-teal-600" />
+        <div className="absolute inset-0 z-20 flex flex-col items-center justify-center bg-white/60 dark:bg-black/60 backdrop-blur-md rounded-3xl">
+          <Loader2 className="h-10 w-10 animate-spin text-teal-600 mb-4" />
+          <p className="font-bold text-slate-900 dark:text-white">Applying Globally...</p>
         </div>
       )}
       
@@ -89,7 +77,6 @@ const ThemeSelector = () => {
               : 'border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 hover:border-teal-400'
           }`}
         >
-          {/* Theme Preview Background */}
           <div className={`absolute inset-0 opacity-5 bg-gradient-to-br ${t.colors}`} />
 
           <div className={`relative z-10 p-5 rounded-2xl mb-4 transition-transform duration-500 group-hover:scale-110 ${

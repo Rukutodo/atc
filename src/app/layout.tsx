@@ -18,28 +18,33 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // Fetch the global theme from the database at build/request time
-  let initialTheme = 'light';
+  // Fetch the global theme from the database at request time
+  let activeTheme = 'light';
   try {
     const { data } = await supabaseAdmin
       .from('site_settings')
       .select('value')
       .eq('key', 'active_theme')
       .single();
-    if (data?.value) initialTheme = data.value;
-  } catch (e) {}
+    
+    if (data?.value) {
+      activeTheme = data.value;
+    }
+  } catch (e) {
+    console.error("Layout: Failed to fetch theme from DB", e);
+  }
 
   return (
-    <html lang="en" className={`scroll-smooth ${initialTheme}`} data-theme={initialTheme}>
+    <html lang="en" className={`scroll-smooth ${activeTheme}`} data-theme={activeTheme}>
       <head>
         <script
           dangerouslySetInnerHTML={{
             __html: `
               (function() {
                 try {
-                  var theme = localStorage.getItem('theme') || '${initialTheme}';
-                  document.documentElement.classList.remove('light', 'dark', 'india');
-                  document.documentElement.classList.add(theme);
+                  // Direct DB-to-DOM sync
+                  var theme = '${activeTheme}';
+                  document.documentElement.className = 'scroll-smooth ' + theme;
                   document.documentElement.setAttribute('data-theme', theme);
                 } catch (e) {}
               })();
