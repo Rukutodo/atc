@@ -10,7 +10,8 @@ import {
   Users, 
   CalendarCheck, 
   Palette, 
-  Clock 
+  Clock,
+  UserCog
 } from 'lucide-react';
 
 const AdminSidebar = () => {
@@ -20,6 +21,7 @@ const AdminSidebar = () => {
     { name: 'Leads Dashboard', href: '/admin/dashboard', icon: LayoutDashboard },
     { name: 'Students', href: '/admin/students', icon: Users },
     { name: 'Attendance', href: '/admin/attendance', icon: CalendarCheck },
+    { name: 'Staff Management', href: '/admin/staff', icon: UserCog },
     { name: 'Themes', href: '/admin/themes', icon: Palette },
     { name: 'History', href: '#', icon: Clock, placeholder: true },
   ];
