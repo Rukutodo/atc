@@ -8,8 +8,19 @@ export async function POST(req: Request) {
     // NOTE: In a real production environment, you should use environment variables
     // for SMTP credentials (e.g., Gmail App Password, SendGrid Key, etc.)
     // For this demonstration, we'll configure the transporter logic.
+    // Validate environment variables
+    if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
+      console.error('Missing EMAIL_USER or EMAIL_PASS environment variables');
+      return NextResponse.json({ 
+        error: 'Server configuration error', 
+        details: 'Email credentials are not configured in Vercel settings.' 
+      }, { status: 500 });
+    }
+
     const transporter = nodemailer.createTransport({
-      service: 'gmail',
+      host: 'smtp.gmail.com',
+      port: 465,
+      secure: true, // Use SSL
       auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS,
