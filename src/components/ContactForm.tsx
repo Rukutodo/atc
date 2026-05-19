@@ -9,7 +9,7 @@ import { Send, CheckCircle, AlertCircle, Loader2 } from 'lucide-react';
 
 const formSchema = z.object({
   name: z.string().min(2, 'Name must be at least 2 characters'),
-  email: z.string().email('Invalid email address'),
+  email: z.string().email('Invalid email address').optional().or(z.literal('')),
   phone: z.string().min(10, 'Phone number must be at least 10 digits'),
   grade: z.string().min(1, 'Please select a grade/subject'),
   message: z.string().min(10, 'Message must be at least 10 characters'),
@@ -129,7 +129,7 @@ const ContactForm = () => {
                     {errors.name && <p className="text-red-500 text-xs mt-1">{errors.name.message}</p>}
                   </div>
                   <div>
-                    <label className="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2">Email Address</label>
+                    <label className="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2">Email Address (Optional)</label>
                     <input
                       {...register('email')}
                       placeholder="john@example.com"
