@@ -1,42 +1,45 @@
 @import "tailwindcss";
 
 @layer base {
+  /* LIGHT THEME (Based on Screenshot) */
   :root, .light {
     --background: #ffffff;
-    --foreground: #171717;
+    --foreground: #1e293b;
     --primary: #0d9488;
     --primary-foreground: #ffffff;
-    --secondary: #f0fdfa;
+    --secondary: #f8fafc;
     --accent: #f59e0b;
     --muted: #64748b;
-    --border: #e2e8f0;
+    --border: #f1f5f9;
     --card-bg: #ffffff;
     --input-bg: #ffffff;
-    --input-text: #111827;
+    --input-text: #0f172a;
   }
   
+  /* DARK THEME */
   .dark {
-    --background: #0a0a0a;
+    --background: #020617;
     --foreground: #f3f4f6;
     --primary: #14b8a6;
     --primary-foreground: #ffffff;
-    --secondary: #064e3b;
+    --secondary: #0f172a;
     --accent: #f59e0b;
     --muted: #94a3b8;
-    --border: #374151;
-    --card-bg: #111827;
-    --input-bg: #1f2937;
+    --border: #1e293b;
+    --card-bg: #0f172a;
+    --input-bg: #1e293b;
     --input-text: #f9fafb;
   }
 
+  /* INDIA THEME */
   .india {
     --background: #ffffff;
     --foreground: #1e293b;
-    --primary: #FF9933;
+    --primary: #FF9933; /* Saffron */
     --primary-foreground: #ffffff;
-    --secondary: #f0fdf4;
-    --accent: #000080;
-    --border: #138808;
+    --secondary: #f0fdf4; /* Light Green tint */
+    --accent: #000080; /* Navy Blue */
+    --border: #138808; /* India Green */
     --card-bg: #f8fafc;
     --input-bg: #ffffff;
     --input-text: #0f172a;
@@ -49,36 +52,38 @@
   }
 }
 
-/* Explicit color overrides because some elements use Tailwind color utilities that aren't mapped to vars yet */
+/* Global Selectors to support theme changes across all components */
+.light .text-teal-600 { color: #0d9488 !important; }
+.light .bg-teal-600 { background-color: #0d9488 !important; }
+.light .bg-teal-50 { background-color: #f0fdfa !important; }
+.light .border-teal-600 { border-color: #0d9488 !important; }
+
+.dark .text-teal-600 { color: #14b8a6 !important; }
+.dark .bg-teal-600 { background-color: #14b8a6 !important; }
+.dark .bg-teal-50 { background-color: #134e4a !important; }
+.dark .border-teal-600 { border-color: #14b8a6 !important; }
+
 .india .text-teal-600 { color: #138808 !important; }
 .india .bg-teal-600 { background-color: #FF9933 !important; }
 .india .bg-teal-50 { background-color: #f0fdf4 !important; }
 .india .border-teal-600 { border-color: #138808 !important; }
 
-.dark .text-teal-600 { color: #14b8a6 !important; }
-.dark .bg-teal-600 { background-color: #14b8a6 !important; }
-.dark .bg-teal-50 { background-color: #134e4a !important; }
-
 .text-gradient {
   @apply bg-clip-text text-transparent bg-gradient-to-r from-teal-600 to-emerald-600;
-}
-
-.india .text-gradient {
-  background-image: linear-gradient(to right, #FF9933, #138808);
 }
 
 .dark .text-gradient {
   background-image: linear-gradient(to right, #14b8a6, #34d399);
 }
 
+.india .text-gradient {
+  background-image: linear-gradient(to right, #FF9933, #138808);
+}
+
 .card-hover {
-  @apply transition-all duration-300 hover:shadow-xl hover:-translate-y-1 border border-transparent hover:border-teal-100;
+  @apply transition-all duration-300 hover:shadow-xl hover:-translate-y-1 border border-transparent;
 }
 
-.india .card-hover {
-  @apply hover:border-[#138808]/20;
-}
-
-.dark .card-hover {
-  @apply hover:border-teal-900;
-}
+.light .card-hover { @apply hover:border-teal-100; }
+.dark .card-hover { @apply hover:border-teal-900; }
+.india .card-hover { @apply hover:border-[#138808]/20; }
