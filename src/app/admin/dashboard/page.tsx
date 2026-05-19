@@ -34,23 +34,23 @@ const AdminDashboard = async () => {
   const totalLeads = leadsList.length;
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-900 flex">
+    <div className="min-h-screen bg-[var(--background)] flex transition-colors duration-300">
       <AdminSidebar />
 
       {/* Main Content */}
       <main className="flex-1 overflow-y-auto">
-        <header className="bg-white dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 sticky top-0 z-10 px-8 py-4 flex items-center justify-between">
-          <h1 className="text-2xl font-bold text-slate-900 dark:text-white">Recent Inquiries</h1>
+        <header className="bg-[var(--card-bg)] border-b border-[var(--border)] sticky top-0 z-10 px-8 py-4 flex items-center justify-between transition-colors duration-300">
+          <h1 className="text-2xl font-bold text-[var(--foreground)]">Recent Inquiries</h1>
           
           <div className="flex items-center space-x-4">
             <div className="relative hidden md:block">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-[var(--foreground)]/40" />
               <input 
                 placeholder="Search leads..." 
-                className="pl-10 pr-4 py-2 rounded-lg border border-slate-200 dark:border-slate-700 dark:bg-slate-900 dark:text-white outline-none focus:ring-2 focus:ring-teal-500 text-sm w-64"
+                className="pl-10 pr-4 py-2 rounded-lg border border-[var(--border)] bg-[var(--input-bg)] text-[var(--input-text)] outline-none focus:ring-2 focus:ring-[var(--primary)] text-sm w-64"
               />
             </div>
-            <div className="h-10 w-10 rounded-full bg-teal-600 flex items-center justify-center text-white font-bold">
+            <div className="h-10 w-10 rounded-full bg-[var(--primary)] flex items-center justify-center text-[var(--primary-foreground)] font-bold">
               VC
             </div>
           </div>
@@ -59,28 +59,28 @@ const AdminDashboard = async () => {
         <div className="p-8">
           {/* Stats Grid */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
-            <div className="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700">
-              <p className="text-slate-500 dark:text-slate-400 text-sm font-medium mb-1">Total Leads</p>
-              <h3 className="text-3xl font-bold text-slate-900 dark:text-white">{totalLeads}</h3>
-              <p className="text-teal-600 text-xs mt-2 font-bold">All time inquiries</p>
+            <div className="bg-[var(--card-bg)] p-6 rounded-2xl shadow-sm border border-[var(--border)] transition-colors duration-300">
+              <p className="text-[var(--foreground)]/50 text-sm font-medium mb-1">Total Leads</p>
+              <h3 className="text-3xl font-bold text-[var(--foreground)]">{totalLeads}</h3>
+              <p className="text-[var(--primary)] text-xs mt-2 font-bold">All time inquiries</p>
             </div>
-            <div className="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700">
-              <p className="text-slate-500 dark:text-slate-400 text-sm font-medium mb-1">New Inquiries</p>
-              <h3 className="text-3xl font-bold text-slate-900 dark:text-white">{newLeadsCount}</h3>
-              <p className="text-amber-500 text-xs mt-2 font-bold">Requires attention</p>
+            <div className="bg-[var(--card-bg)] p-6 rounded-2xl shadow-sm border border-[var(--border)] transition-colors duration-300">
+              <p className="text-[var(--foreground)]/50 text-sm font-medium mb-1">New Inquiries</p>
+              <h3 className="text-3xl font-bold text-[var(--foreground)]">{newLeadsCount}</h3>
+              <p className="text-[var(--accent)] text-xs mt-2 font-bold">Requires attention</p>
             </div>
-            <div className="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700">
-              <p className="text-slate-500 dark:text-slate-400 text-sm font-medium mb-1">Status</p>
+            <div className="bg-[var(--card-bg)] p-6 rounded-2xl shadow-sm border border-[var(--border)] transition-colors duration-300">
+              <p className="text-[var(--foreground)]/50 text-sm font-medium mb-1">Status</p>
               <h3 className="text-3xl font-bold text-emerald-600">Active</h3>
               <p className="text-emerald-600 text-xs mt-2 font-bold">System online</p>
             </div>
           </div>
 
           {/* Leads Table */}
-          <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 overflow-hidden">
-            <div className="p-6 border-b border-slate-100 dark:border-slate-700 flex items-center justify-between">
-              <h4 className="font-bold text-slate-900 dark:text-white">All Leads</h4>
-              <button className="text-slate-500 dark:text-slate-400 flex items-center space-x-2 text-sm font-medium hover:text-teal-600">
+          <div className="bg-[var(--card-bg)] rounded-2xl shadow-sm border border-[var(--border)] overflow-hidden transition-colors duration-300">
+            <div className="p-6 border-b border-[var(--border)] flex items-center justify-between">
+              <h4 className="font-bold text-[var(--foreground)]">All Leads</h4>
+              <button className="text-[var(--foreground)]/50 flex items-center space-x-2 text-sm font-medium hover:text-[var(--primary)] transition-colors">
                 <Filter className="h-4 w-4" />
                 <span>Filter</span>
               </button>
@@ -88,7 +88,7 @@ const AdminDashboard = async () => {
             
             <div className="overflow-x-auto">
               <table className="w-full text-left">
-                <thead className="bg-slate-50 dark:bg-slate-900/50 text-slate-500 dark:text-slate-400 text-xs uppercase font-bold">
+                <thead className="bg-[var(--secondary)] text-[var(--foreground)]/50 text-xs uppercase font-bold">
                   <tr>
                     <th className="px-6 py-4">Student Name</th>
                     <th className="px-6 py-4">Course/Grade</th>
@@ -97,41 +97,41 @@ const AdminDashboard = async () => {
                     <th className="px-6 py-4">Status</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-slate-100 dark:divide-slate-700">
+                <tbody className="divide-y divide-[var(--border)]">
                   {leadsList.length === 0 ? (
                     <tr>
-                      <td colSpan={5} className="px-6 py-12 text-center text-slate-500 dark:text-slate-400 italic">
+                      <td colSpan={5} className="px-6 py-12 text-center text-[var(--foreground)]/40 italic">
                         No inquiries found yet.
                       </td>
                     </tr>
                   ) : (
                     leadsList.map((lead) => (
-                      <tr key={lead.id} className="hover:bg-slate-50/50 dark:hover:bg-slate-700/30 transition-colors">
+                      <tr key={lead.id} className="hover:bg-[var(--primary)]/5 transition-colors">
                         <td className="px-6 py-4">
-                          <div className="font-bold text-slate-900 dark:text-white">{lead.name}</div>
-                          <div className="text-[10px] text-slate-400 mt-1 uppercase">
+                          <div className="font-bold text-[var(--foreground)]">{lead.name}</div>
+                          <div className="text-[10px] text-[var(--foreground)]/40 mt-1 uppercase">
                             {new Date(lead.created_at).toLocaleDateString()}
                           </div>
                         </td>
                         <td className="px-6 py-4">
-                          <span className="px-3 py-1 rounded-full bg-teal-50 dark:bg-teal-900/30 text-teal-700 dark:text-teal-400 text-xs font-bold uppercase">
+                          <span className="px-3 py-1 rounded-full bg-[var(--primary)]/10 text-[var(--primary)] text-xs font-bold uppercase">
                             {lead.grade}
                           </span>
                         </td>
                         <td className="px-6 py-4">
-                          <div className="flex flex-col space-y-1 text-sm text-slate-600 dark:text-slate-300">
+                          <div className="flex flex-col space-y-1 text-sm text-[var(--foreground)]/70">
                             <span className="flex items-center space-x-2">
                               <Mail className="h-3 w-3" />
                               <span className="truncate max-w-[150px]">{lead.email || 'N/A'}</span>
                             </span>
-                            <span className="flex items-center space-x-2 font-medium">
+                            <span className="flex items-center space-x-2 font-medium text-[var(--foreground)]">
                               <Phone className="h-3 w-3" />
                               <span>{lead.phone}</span>
                             </span>
                           </div>
                         </td>
                         <td className="px-6 py-4">
-                          <div className="flex items-start space-x-2 text-sm text-slate-600 dark:text-slate-400 max-w-[200px]">
+                          <div className="flex items-start space-x-2 text-sm text-[var(--foreground)]/60 max-w-[200px]">
                             <Search className="h-3 w-3 shrink-0 mt-1 opacity-50" />
                             <span className="line-clamp-2">{lead.message}</span>
                           </div>

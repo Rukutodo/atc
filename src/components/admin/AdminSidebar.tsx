@@ -12,7 +12,6 @@ import {
   Palette, 
   Clock 
 } from 'lucide-react';
-import ThemeToggle from '@/app/admin/dashboard/ThemeToggle';
 
 const AdminSidebar = () => {
   const pathname = usePathname();
@@ -26,11 +25,11 @@ const AdminSidebar = () => {
   ];
 
   return (
-    <aside className="w-64 bg-white dark:bg-slate-800 border-r border-slate-200 dark:border-slate-700 hidden lg:flex flex-col h-screen sticky top-0">
-      <div className="p-6 border-b border-slate-100 dark:border-slate-700">
+    <aside className="w-64 bg-[var(--card-bg)] border-r border-[var(--border)] hidden lg:flex flex-col h-screen sticky top-0 transition-colors duration-300">
+      <div className="p-6 border-b border-[var(--border)]">
         <div className="flex items-center space-x-2">
-          <BookOpen className="h-6 w-6 text-teal-600" />
-          <span className="font-bold text-xl dark:text-white">Acharya Admin</span>
+          <BookOpen className="h-6 w-6 text-[var(--primary)]" />
+          <span className="font-bold text-xl text-[var(--foreground)]">Acharya Admin</span>
         </div>
       </div>
       
@@ -45,8 +44,8 @@ const AdminSidebar = () => {
               href={link.href}
               className={`flex items-center space-x-3 w-full p-3 rounded-xl transition-all text-left ${
                 isActive 
-                  ? 'bg-teal-50 dark:bg-teal-900/30 text-teal-700 dark:text-teal-400 font-bold' 
-                  : 'text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-700 font-medium'
+                  ? 'bg-[var(--primary)]/10 text-[var(--primary)] font-bold shadow-sm' 
+                  : 'text-[var(--foreground)]/60 hover:bg-[var(--primary)]/5 hover:text-[var(--primary)] font-medium'
               }`}
             >
               <Icon className="h-5 w-5" />
@@ -56,12 +55,11 @@ const AdminSidebar = () => {
         })}
       </nav>
 
-      <div className="p-4 border-t border-slate-100 dark:border-slate-700 space-y-4">
-        <ThemeToggle />
+      <div className="p-4 border-t border-[var(--border)] space-y-4">
         <form action="/api/logout" method="POST">
           <button 
             type="submit"
-            className="flex items-center space-x-3 w-full p-3 text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-xl font-medium transition-all text-left"
+            className="flex items-center space-x-3 w-full p-3 text-red-500 hover:bg-red-50/10 rounded-xl font-medium transition-all text-left"
           >
             <LogOut className="h-5 w-5" />
             <span>Sign Out</span>
