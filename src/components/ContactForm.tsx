@@ -5,13 +5,14 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import { motion } from 'framer-motion';
-import { Send, CheckCircle, AlertCircle, Loader2 } from 'lucide-react';
+import { Send, CheckCircle, AlertCircle, Loader2, GraduationCap } from 'lucide-react';
 
 const formSchema = z.object({
   name: z.string().min(2, 'Name must be at least 2 characters'),
   email: z.string().email('Invalid email address').optional().or(z.literal('')),
   phone: z.string().min(10, 'Phone number must be at least 10 digits'),
   grade: z.string().min(1, 'Please select a grade/subject'),
+  guardianQualification: z.string().min(2, 'Please enter your qualification'),
   message: z.string().min(10, 'Message must be at least 10 characters'),
 });
 
@@ -129,20 +130,6 @@ const ContactForm = () => {
                     {errors.name && <p className="text-red-500 text-xs mt-1">{errors.name.message}</p>}
                   </div>
                   <div>
-                    <label className="block text-sm font-bold text-[var(--foreground)]/80 mb-2">Email Address (Optional)</label>
-                    <input
-                      {...register('email')}
-                      placeholder="john@example.com"
-                      className={`w-full px-4 py-3 rounded-xl border bg-[var(--input-bg)] text-[var(--input-text)] placeholder:text-[var(--foreground)]/30 ${
-                        errors.email ? 'border-red-500' : 'border-[var(--border)]'
-                      } focus:outline-none focus:ring-2 focus:ring-[var(--primary)] transition-all`}
-                    />
-                    {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email.message}</p>}
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  <div>
                     <label className="block text-sm font-bold text-[var(--foreground)]/80 mb-2">Phone Number</label>
                     <input
                       {...register('phone')}
@@ -152,6 +139,23 @@ const ContactForm = () => {
                       } focus:outline-none focus:ring-2 focus:ring-[var(--primary)] transition-all`}
                     />
                     {errors.phone && <p className="text-red-500 text-xs mt-1">{errors.phone.message}</p>}
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  <div>
+                    <label className="block text-sm font-bold text-[var(--foreground)]/80 mb-2">Guardian Qualification</label>
+                    <div className="relative">
+                      <GraduationCap className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-[var(--foreground)]/30" />
+                      <input
+                        {...register('guardianQualification')}
+                        placeholder="e.g. M.Tech, Parent"
+                        className={`w-full pl-10 pr-4 py-3 rounded-xl border bg-[var(--input-bg)] text-[var(--input-text)] placeholder:text-[var(--foreground)]/30 ${
+                          errors.guardianQualification ? 'border-red-500' : 'border-[var(--border)]'
+                        } focus:outline-none focus:ring-2 focus:ring-[var(--primary)] transition-all`}
+                      />
+                    </div>
+                    {errors.guardianQualification && <p className="text-red-500 text-xs mt-1">{errors.guardianQualification.message}</p>}
                   </div>
                   <div>
                     <label className="block text-sm font-bold text-[var(--foreground)]/80 mb-2">Grade / Service</label>
@@ -174,10 +178,22 @@ const ContactForm = () => {
                 </div>
 
                 <div>
+                   <label className="block text-sm font-bold text-[var(--foreground)]/80 mb-2">Email Address (Optional)</label>
+                   <input
+                     {...register('email')}
+                     placeholder="john@example.com"
+                     className={`w-full px-4 py-3 rounded-xl border bg-[var(--input-bg)] text-[var(--input-text)] placeholder:text-[var(--foreground)]/30 ${
+                       errors.email ? 'border-red-500' : 'border-[var(--border)]'
+                     } focus:outline-none focus:ring-2 focus:ring-[var(--primary)] transition-all`}
+                   />
+                   {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email.message}</p>}
+                </div>
+
+                <div>
                   <label className="block text-sm font-bold text-[var(--foreground)]/80 mb-2">Your Message</label>
                   <textarea
                     {...register('message')}
-                    rows={4}
+                    rows={3}
                     placeholder="Tell us about your child's requirements..."
                     className={`w-full px-4 py-3 rounded-xl border bg-[var(--input-bg)] text-[var(--input-text)] placeholder:text-[var(--foreground)]/30 ${
                       errors.message ? 'border-red-500' : 'border-[var(--border)]'

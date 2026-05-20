@@ -50,7 +50,7 @@ const Hero = () => {
 
             <div className="mt-12 grid grid-cols-2 gap-8">
               <div className="flex flex-col">
-                <span className="text-3xl font-bold text-[var(--foreground)]">200+</span>
+                <span className="text-3xl font-bold text-[var(--foreground)]">2000+</span>
                 <span className="text-[var(--foreground)]/50 text-sm font-medium">Students Taught</span>
               </div>
               <div className="flex flex-col">
@@ -98,7 +98,7 @@ const Hero = () => {
                 <Award className="h-6 w-6 text-[var(--primary)]" />
               </div>
               <div>
-                <p className="font-bold text-[var(--foreground)] text-sm">10+ Years</p>
+                <p className="font-bold text-[var(--foreground)] text-sm">25+ Years</p>
                 <p className="text-[10px] text-[var(--foreground)]/50">Of Teaching Excellence</p>
               </div>
             </motion.div>
