@@ -9,11 +9,22 @@ const siteUrl = "https://acharyatutorials.vercel.app";
 
 export const metadata: Metadata = {
   title: {
-    default: "Acharya Tutorials | Best ICSE, CBSE & SSC Coaching in Visakhapatnam",
+    default: "Acharya Tutorials | Best Home Tuitions & Online Classes in Visakhapatnam",
     template: "%s | Acharya Tutorials"
   },
-  description: "Acharya Tutorials offers premium education for ICSE, SSC, and CBSE students up to 10th grade. Specialist in Home Tutoring and Spoken English in Visakhapatnam with 25+ years of experience.",
-  keywords: ["Acharya Tutorials", "Best coaching in Visakhapatnam", "ICSE Tuitions Vizag", "CBSE coaching Visakhapatnam", "SSC coaching Vizag", "Home tutors in Visakhapatnam", "Spoken English classes Vizag", "Reasonable price tuitions"],
+  description: "Acharya Tutorials: #1 choice for Home Tuitions in Visakhapatnam & Online Classes globally. Specializing in ICSE, CBSE & SSC up to 10th grade. 25+ years of excellence.",
+  keywords: [
+    "Acharya Tutorials", 
+    "Home Tuitions in Visakhapatnam", 
+    "Online Classes for ICSE CBSE SSC", 
+    "Best tutors in Vizag", 
+    "Private tutors Visakhapatnam", 
+    "10th Class coaching Vizag", 
+    "Home tutoring service Andhra Pradesh",
+    "Reasonable price online tuitions",
+    "SSC coaching Visakhapatnam",
+    "Spoken English courses Online"
+  ],
   authors: [{ name: "Acharya Tutorials" }],
   creator: "Acharya Tutorials",
   metadataBase: new URL(siteUrl),
@@ -24,22 +35,22 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_IN",
     url: siteUrl,
-    title: "Acharya Tutorials | Premium Education in Visakhapatnam",
-    description: "Expert home tutoring and classroom coaching for ICSE, CBSE, and SSC students. 25+ years of teaching excellence.",
+    title: "Acharya Tutorials | Top Home & Online Tutoring in Visakhapatnam",
+    description: "Expert home tutoring in Vizag and premium online classes for students across India. 25+ years of teaching excellence.",
     siteName: "Acharya Tutorials",
     images: [
       {
         url: "/assets/StudySessionInACozyRoom.png",
         width: 1200,
         height: 630,
-        alt: "Acharya Tutorials - Empowering Minds",
+        alt: "Acharya Tutorials - Education Excellence in Vizag",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Acharya Tutorials | Premium Education in Visakhapatnam",
-    description: "Expert home tutoring and classroom coaching for ICSE, CBSE, and SSC students.",
+    title: "Acharya Tutorials | Leading Tutors in Visakhapatnam",
+    description: "Personalized Home Tuitions in Vizag & Interactive Online Classes for ICSE, CBSE & SSC.",
     images: ["/assets/StudySessionInACozyRoom.png"],
   },
   robots: {
@@ -78,7 +89,7 @@ export default async function RootLayout({
     console.error("Layout: Failed to fetch theme from DB", e);
   }
 
-  // Schema.org Structured Data (JSON-LD)
+  // Enhanced JSON-LD Structured Data for Local + Global SEO
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
@@ -87,6 +98,7 @@ export default async function RootLayout({
     "@id": siteUrl,
     "url": siteUrl,
     "telephone": "+91 9346801502",
+    "priceRange": "$$",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "Visakhapatnam",
@@ -100,24 +112,57 @@ export default async function RootLayout({
       "latitude": 17.6868,
       "longitude": 83.2185
     },
+    "areaServed": [
+      {
+        "@type": "City",
+        "name": "Visakhapatnam",
+        "sameAs": "https://en.wikipedia.org/wiki/Visakhapatnam"
+      },
+      {
+        "@type": "Country",
+        "name": "India"
+      },
+      {
+        "@type": "VirtualLocation",
+        "name": "Online/Worldwide"
+      }
+    ],
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Tutoring Services",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Home Tuitions in Visakhapatnam"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Online Interactive Classes"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "ICSE, CBSE & SSC Coaching"
+          }
+        }
+      ]
+    },
     "openingHoursSpecification": {
       "@type": "OpeningHoursSpecification",
       "dayOfWeek": [
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday",
-        "Saturday"
+        "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
       ],
       "opens": "08:00",
-      "closes": "20:00"
+      "closes": "21:00"
     },
-    "sameAs": [
-      "https://www.facebook.com/acharyatutorials",
-      "https://www.instagram.com/acharyatutorials"
-    ],
-    "description": "Best quality education at reasonable price for ICSE, SSC, and CBSE students up to 10th grade. Specialist in Home Tutoring in Visakhapatnam."
+    "description": "Acharya Tutorials provides top-rated Home Tuitions in Visakhapatnam and high-quality Online Classes globally. Specialized in ICSE, SSC, and CBSE boards for classes up to 10th."
   };
 
   return (
