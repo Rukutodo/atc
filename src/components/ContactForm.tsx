@@ -70,7 +70,7 @@ const ContactForm = () => {
               <span className="text-[var(--primary)]">With Us Today</span>
             </motion.h2>
             <p className="text-lg text-[var(--foreground)]/70 mb-8 leading-relaxed">
-              Fill out the form below and our team will get back to you within 24 hours to discuss your child's educational needs.
+              Fill out the form below and our team will get back to you within 24 hours to discuss your educational needs.
             </p>
 
             <div className="space-y-6">
@@ -79,8 +79,8 @@ const ContactForm = () => {
                   <CheckCircle className="h-6 w-6 text-[var(--primary)]" />
                 </div>
                 <div>
-                  <h4 className="font-bold text-[var(--foreground)]">Personalized Counseling</h4>
-                  <p className="text-sm text-[var(--foreground)]/50">Free first session to understand student's needs.</p>
+                  <h4 className="font-bold text-[var(--foreground)]">All Classes Covered</h4>
+                  <p className="text-sm text-[var(--foreground)]/50">From Primary to Higher Secondary (1st - 12th).</p>
                 </div>
               </div>
               <div className="flex items-center space-x-4">
@@ -88,8 +88,8 @@ const ContactForm = () => {
                   <CheckCircle className="h-6 w-6 text-[var(--primary)]" />
                 </div>
                 <div>
-                  <h4 className="font-bold text-[var(--foreground)]">No Hidden Fees</h4>
-                  <p className="text-sm text-[var(--foreground)]/50">Transparent pricing for all tutoring packages.</p>
+                  <h4 className="font-bold text-[var(--foreground)]">Specialized Mentoring</h4>
+                  <p className="text-sm text-[var(--foreground)]/50">Personalized plans for board exams and beyond.</p>
                 </div>
               </div>
             </div>
@@ -166,12 +166,17 @@ const ContactForm = () => {
                       } focus:outline-none focus:ring-2 focus:ring-[var(--primary)] transition-all`}
                     >
                       <option value="">Select an option</option>
-                      <option value="icse">ICSE Tuitions</option>
-                      <option value="ssc">SSC Tuitions</option>
-                      <option value="cbse">CBSE Tuitions</option>
-                      <option value="languages">Spoken English/Hindi</option>
-                      <option value="home">Home Tutoring</option>
-                      <option value="online">Online Classes</option>
+                      <optgroup label="School Boards">
+                        <option value="icse">ICSE Tuitions (1st-12th)</option>
+                        <option value="cbse">CBSE Tuitions (1st-12th)</option>
+                        <option value="ssc">SSC Tuitions (1st-12th)</option>
+                      </optgroup>
+                      <optgroup label="Specialized Services">
+                        <option value="languages">Spoken English/Hindi</option>
+                        <option value="home">Home Tutoring</option>
+                        <option value="online">Online Classes</option>
+                        <option value="competitive">JEE/NEET Foundation</option>
+                      </optgroup>
                     </select>
                     {errors.grade && <p className="text-red-500 text-xs mt-1">{errors.grade.message}</p>}
                   </div>
@@ -194,7 +199,7 @@ const ContactForm = () => {
                   <textarea
                     {...register('message')}
                     rows={3}
-                    placeholder="Tell us about your child's requirements..."
+                    placeholder="Tell us about the student's requirements..."
                     className={`w-full px-4 py-3 rounded-xl border bg-[var(--input-bg)] text-[var(--input-text)] placeholder:text-[var(--foreground)]/30 ${
                       errors.message ? 'border-red-500' : 'border-[var(--border)]'
                     } focus:outline-none focus:ring-2 focus:ring-[var(--primary)] transition-all resize-none`}

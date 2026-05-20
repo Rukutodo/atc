@@ -29,7 +29,7 @@ const Hero = () => {
             </h1>
             
             <p className="text-xl text-[var(--foreground)]/70 mb-8 leading-relaxed max-w-lg">
-              Unlock your true potential with expert guidance. We provide top-quality education for ICSE, SSC, and CBSE students at prices that make sense.
+              Unlock your true potential with expert guidance. We provide top-quality education for all classes from 1st to 12th grade, specializing in ICSE, SSC, and CBSE.
             </p>
 
             <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">

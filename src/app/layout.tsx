@@ -12,14 +12,16 @@ export const metadata: Metadata = {
     default: "Acharya Tutorials | Best Home Tuitions & Online Classes in Visakhapatnam",
     template: "%s | Acharya Tutorials"
   },
-  description: "Acharya Tutorials: #1 choice for Home Tuitions in Visakhapatnam & Online Classes globally. Specializing in ICSE, CBSE & SSC up to 10th grade. 25+ years of excellence.",
+  description: "Acharya Tutorials: #1 choice for Home Tuitions & Online Classes globally. Specialized in ICSE, CBSE & SSC for All Classes (1st-12th). 25+ years of excellence in Visakhapatnam.",
   keywords: [
     "Acharya Tutorials", 
     "Home Tuitions in Visakhapatnam", 
-    "Online Classes for ICSE CBSE SSC", 
-    "Best tutors in Vizag", 
-    "Private tutors Visakhapatnam", 
-    "10th Class coaching Vizag", 
+    "Online Classes for all subjects", 
+    "Best tutors in Vizag for all classes", 
+    "Private tutors for 11th and 12th", 
+    "K-12 coaching Visakhapatnam", 
+    "IIT JEE Foundation Vizag",
+    "NEET Foundation coaching",
     "Home tutoring service Andhra Pradesh",
     "Reasonable price online tuitions",
     "SSC coaching Visakhapatnam",
@@ -35,22 +37,22 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_IN",
     url: siteUrl,
-    title: "Acharya Tutorials | Top Home & Online Tutoring in Visakhapatnam",
-    description: "Expert home tutoring in Vizag and premium online classes for students across India. 25+ years of teaching excellence.",
+    title: "Acharya Tutorials | Premium Education for All Classes in Visakhapatnam",
+    description: "Expert home tutoring in Vizag and premium online classes for all students (1st to 12th grade). 25+ years of teaching excellence.",
     siteName: "Acharya Tutorials",
     images: [
       {
         url: "/assets/StudySessionInACozyRoom.png",
         width: 1200,
         height: 630,
-        alt: "Acharya Tutorials - Education Excellence in Vizag",
+        alt: "Acharya Tutorials - Education Excellence for All Ages",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Acharya Tutorials | Leading Tutors in Visakhapatnam",
-    description: "Personalized Home Tuitions in Vizag & Interactive Online Classes for ICSE, CBSE & SSC.",
+    title: "Acharya Tutorials | Leading Tutors for All Classes",
+    description: "Personalized Home Tuitions in Vizag & Interactive Online Classes for All Grades (1st-12th).",
     images: ["/assets/StudySessionInACozyRoom.png"],
   },
   robots: {
@@ -129,27 +131,27 @@ export default async function RootLayout({
     ],
     "hasOfferCatalog": {
       "@type": "OfferCatalog",
-      "name": "Tutoring Services",
+      "name": "Comprehensive Tutoring Services",
       "itemListElement": [
         {
           "@type": "Offer",
           "itemOffered": {
             "@type": "Service",
-            "name": "Home Tuitions in Visakhapatnam"
+            "name": "Home Tuitions for All Classes (1st-12th)"
           }
         },
         {
           "@type": "Offer",
           "itemOffered": {
             "@type": "Service",
-            "name": "Online Interactive Classes"
+            "name": "Online Classes for ICSE, CBSE & SSC"
           }
         },
         {
           "@type": "Offer",
           "itemOffered": {
             "@type": "Service",
-            "name": "ICSE, CBSE & SSC Coaching"
+            "name": "Specialized Foundation for Competitive Exams"
           }
         }
       ]
@@ -162,7 +164,7 @@ export default async function RootLayout({
       "opens": "08:00",
       "closes": "21:00"
     },
-    "description": "Acharya Tutorials provides top-rated Home Tuitions in Visakhapatnam and high-quality Online Classes globally. Specialized in ICSE, SSC, and CBSE boards for classes up to 10th."
+    "description": "Acharya Tutorials provides top-rated Home Tuitions in Visakhapatnam and high-quality Online Classes globally for All Classes (1st to 12th). Specialized in ICSE, SSC, and CBSE boards."
   };
 
   return (
