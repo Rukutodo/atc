@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { UserPlus, Shield, Mail, Key, Loader2, Plus, X, Check } from 'lucide-react';
+import { UserPlus, Shield, Mail, Key, Loader2, Plus, X, Check, RefreshCcw } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 
 const AdminTable = ({ initialAdmins }: { initialAdmins: any[] }) => {
@@ -42,6 +42,28 @@ const AdminTable = ({ initialAdmins }: { initialAdmins: any[] }) => {
       console.error('Failed to add admin');
     } finally {
       setIsSubmitting(false);
+    }
+  };
+
+  const handleResetPassword = async (adminId: string) => {
+    const newPass = prompt('Enter new temporary password for this user:');
+    if (!newPass || newPass.length < 6) {
+        if (newPass) alert('Password must be at least 6 characters.');
+        return;
+    }
+
+    if (!confirm('Confirm password reset? This will take effect immediately.')) return;
+
+    try {
+        const res = await fetch('/api/admins/reset-password', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ adminId, newPassword: newPass }),
+        });
+        if (res.ok) alert('Password reset successfully!');
+        else alert('Failed to reset password.');
+    } catch (e) {
+        alert('An error occurred.');
     }
   };
 
@@ -99,7 +121,7 @@ const AdminTable = ({ initialAdmins }: { initialAdmins: any[] }) => {
               />
             </div>
           </div>
-          <div className="bg-amber-500/10 p-4 rounded-xl border border-amber-500/20 text-xs text-amber-600">
+          <div className="bg-amber-50/10 p-4 rounded-xl border border-amber-500/20 text-xs text-amber-700 dark:text-amber-500">
             <strong>Note:</strong> Upon saving, an email will be sent to the staff member with these credentials.
           </div>
           <button 
@@ -119,7 +141,7 @@ const AdminTable = ({ initialAdmins }: { initialAdmins: any[] }) => {
               <th className="px-6 py-4">Name</th>
               <th className="px-6 py-4">Email</th>
               <th className="px-6 py-4">Role</th>
-              <th className="px-6 py-4">Created On</th>
+              <th className="px-6 py-4 text-right">Actions</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-[var(--border)]">
@@ -135,34 +157,29 @@ const AdminTable = ({ initialAdmins }: { initialAdmins: any[] }) => {
                 </td>
                 <td className="px-6 py-4 text-[var(--foreground)]/70">{admin.email}</td>
                 <td className="px-6 py-4">
-                  <span className="px-3 py-1 rounded-full bg-[var(--secondary)] text-[var(--foreground)]/60 text-[10px] font-extrabold uppercase flex items-center w-fit space-x-1 border border-[var(--border)]">
+                  <span className="px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-[var(--foreground)]/60 text-[10px] font-extrabold uppercase flex items-center w-fit space-x-1 border border-[var(--border)]">
                     <Shield className="h-3 w-3" />
                     <span>{admin.role}</span>
                   </span>
                 </td>
-                <td className="px-6 py-4 text-sm text-[var(--foreground)]/40">
-                  {new Date(admin.created_at).toLocaleDateString()}
+                <td className="px-6 py-4 text-right">
+                    <button 
+                        onClick={() => handleResetPassword(admin.id)}
+                        className="p-2 text-[var(--foreground)]/40 hover:text-[var(--primary)] hover:bg-[var(--primary)]/5 rounded-lg transition-all"
+                        title="Reset Password"
+                    >
+                        <RefreshCcw className="h-4 w-4" />
+                    </button>
                 </td>
               </tr>
             ))}
-            {/* Hardcoded Primary Admin Row (since they might not be in DB yet) */}
-            {!admins.some(a => a.email === 'venucolab@gmail.com') && (
-              <tr className="bg-teal-50/10">
-                <td className="px-6 py-4">
-                  <div className="flex items-center space-x-3">
-                    <div className="h-8 w-8 rounded-full bg-[var(--primary)] flex items-center justify-center text-white font-bold text-xs">V</div>
-                    <span className="font-bold text-[var(--foreground)]">Primary Administrator</span>
-                  </div>
-                </td>
-                <td className="px-6 py-4 text-[var(--foreground)]/70">venucolab@gmail.com</td>
-                <td className="px-6 py-4">
-                  <span className="px-3 py-1 rounded-full bg-[var(--primary)] text-white text-[10px] font-extrabold uppercase flex items-center w-fit space-x-1">
-                    <Shield className="h-3 w-3" />
-                    <span>Super Admin</span>
-                  </span>
-                </td>
-                <td className="px-6 py-4 text-sm text-[var(--foreground)]/40">System Default</td>
-              </tr>
+            {/* Fallback Display if DB is empty */}
+            {admins.length === 0 && !admins.some(a => a.email === 'venucolab@gmail.com') && (
+                <tr>
+                    <td colSpan={4} className="px-6 py-8 text-center text-[var(--foreground)]/40 italic">
+                        No additional staff members found.
+                    </td>
+                </tr>
             )}
           </tbody>
         </table>
