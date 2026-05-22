@@ -94,14 +94,6 @@ const AdminLogin = () => {
           </button>
         </form>
 
-        <div className="mt-8 text-center border-t border-[var(--border)] pt-8">
-          <button 
-            onClick={() => router.push('/')}
-            className="text-[var(--foreground)]/50 hover:text-teal-600 text-sm font-medium transition-colors"
-          >
-            ← Back to Home
-          </button>
-        </div>
       </div>
     </div>
   );
