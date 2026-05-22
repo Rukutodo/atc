@@ -1,15 +1,17 @@
 import { MetadataRoute } from 'next';
 
 export default function sitemap(): MetadataRoute.Sitemap {
+  const baseUrl = 'https://acharyatutorials.com';
+  
   return [
     {
-      url: 'https://acharyatutorials.vercel.app',
+      url: baseUrl,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 1,
     },
     {
-      url: 'https://acharyatutorials.vercel.app/admin',
+      url: `${baseUrl}/admin`,
       lastModified: new Date(),
       changeFrequency: 'never',
       priority: 0.3,

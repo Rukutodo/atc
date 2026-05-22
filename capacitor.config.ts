@@ -6,7 +6,7 @@ const config: CapacitorConfig = {
   webDir: 'out', // Next.js static export directory (not used in live mode but required by cap)
   server: {
     // This is the production URL the Android app will load
-    url: 'https://acharyatutorials.vercel.app/admin', 
+    url: 'https://acharyatutorials.com/admin', 
     cleartext: true
   }
 };

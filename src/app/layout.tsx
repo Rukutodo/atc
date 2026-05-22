@@ -5,7 +5,7 @@ import { supabaseAdmin } from "@/lib/supabase";
 
 const inter = Inter({ subsets: ["latin"] });
 
-const siteUrl = "https://acharyatutorials.vercel.app";
+const siteUrl = "https://acharyatutorials.com";
 
 export const metadata: Metadata = {
   title: {
