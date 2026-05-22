@@ -36,7 +36,7 @@ const AdminSidebar = () => {
       {/* Mobile Hamburger Button */}
       <button 
         onClick={toggleSidebar}
-        className="lg:hidden fixed top-4 left-4 z-50 p-2 bg-[var(--primary)] text-white rounded-lg shadow-lg hover:bg-[var(--primary)]/90 transition-all"
+        className="lg:hidden fixed top-3 left-4 z-50 p-2 bg-[var(--primary)] text-white rounded-lg shadow-lg hover:bg-[var(--primary)]/90 transition-all"
       >
         {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
       </button>

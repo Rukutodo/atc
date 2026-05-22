@@ -38,9 +38,9 @@ const AdminDashboard = async () => {
       <AdminSidebar />
 
       {/* Main Content */}
-      <main className="flex-1 overflow-x-hidden pt-16 lg:pt-0">
+      <main className="flex-1 overflow-x-hidden pt-0">
         <header className="bg-[var(--card-bg)] border-b border-[var(--border)] sticky top-0 z-10 px-4 sm:px-8 py-4 flex items-center justify-between transition-colors duration-300">
-          <h1 className="text-xl sm:text-2xl font-bold text-[var(--foreground)] ml-12 lg:ml-0">Recent Inquiries</h1>
+          <h1 className="text-xl sm:text-2xl font-bold text-[var(--foreground)] ml-14 lg:ml-0">Recent Inquiries</h1>
           
           <div className="flex items-center space-x-4">
             <div className="relative hidden md:block">
