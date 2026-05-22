@@ -1,0 +1,15 @@
+{
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.acharyatutorials.com"
+        }
+      ],
+      "destination": "https://acharyatutorials.com/$1",
+      "permanent": true
+    }
+  ]
+}

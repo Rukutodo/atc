@@ -11,6 +11,7 @@ const formSchema = z.object({
   name: z.string().min(2, 'Name must be at least 2 characters'),
   email: z.string().email('Invalid email address').optional().or(z.literal('')),
   phone: z.string().min(10, 'Phone number must be at least 10 digits'),
+  schoolName: z.string().min(2, 'Please enter your school name'),
   grade: z.string().min(1, 'Please select a grade/subject'),
   guardianQualification: z.string().min(2, 'Please enter your qualification'),
   message: z.string().min(10, 'Message must be at least 10 characters'),
@@ -180,6 +181,18 @@ const ContactForm = () => {
                     </select>
                     {errors.grade && <p className="text-red-500 text-xs mt-1">{errors.grade.message}</p>}
                   </div>
+                </div>
+
+                <div>
+                   <label className="block text-sm font-bold text-[var(--foreground)]/80 mb-2">School Name</label>
+                   <input
+                     {...register('schoolName')}
+                     placeholder="e.g. St. Joseph's, Little Angels"
+                     className={`w-full px-4 py-3 rounded-xl border bg-[var(--input-bg)] text-[var(--input-text)] placeholder:text-[var(--foreground)]/30 ${
+                       errors.schoolName ? 'border-red-500' : 'border-[var(--border)]'
+                     } focus:outline-none focus:ring-2 focus:ring-[var(--primary)] transition-all`}
+                   />
+                   {errors.schoolName && <p className="text-red-500 text-xs mt-1">{errors.schoolName.message}</p>}
                 </div>
 
                 <div>

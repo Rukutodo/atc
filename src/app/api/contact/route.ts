@@ -4,7 +4,7 @@ import { supabaseAdmin } from '@/lib/supabase';
 
 export async function POST(req: Request) {
   try {
-    const { name, email, phone, grade, message, guardianQualification } = await req.json();
+    const { name, email, phone, grade, message, guardianQualification, schoolName } = await req.json();
 
     // 1. Save to Database
     const { error: dbError } = await supabaseAdmin
@@ -17,6 +17,7 @@ export async function POST(req: Request) {
           grade, 
           message, 
           guardian_qualification: guardianQualification,
+          school_name: schoolName,
           status: 'New' 
         }
       ]);
@@ -53,6 +54,7 @@ export async function POST(req: Request) {
         -------------------------
         Name: ${name}
         Guardian Qualification: ${guardianQualification}
+        School Name: ${schoolName}
         Email: ${email || 'N/A'}
         Phone: ${phone}
         Grade/Service: ${grade}
@@ -63,6 +65,7 @@ export async function POST(req: Request) {
           <h2 style="color: #0d9488;">New Enrollment Inquiry</h2>
           <p><strong>Name:</strong> ${name}</p>
           <p><strong>Guardian Qualification:</strong> ${guardianQualification}</p>
+          <p><strong>School Name:</strong> ${schoolName}</p>
           <p><strong>Email:</strong> ${email || 'N/A'}</p>
           <p><strong>Phone:</strong> ${phone}</p>
           <p><strong>Grade/Service:</strong> ${grade}</p>
