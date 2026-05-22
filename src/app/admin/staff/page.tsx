@@ -20,15 +20,15 @@ const StaffPage = async () => {
     .order('name', { ascending: true });
 
   return (
-    <div className="min-h-screen bg-[var(--background)] flex transition-colors duration-300">
+    <div className="min-h-screen bg-[var(--background)] block lg:flex transition-colors duration-300">
       <AdminSidebar />
 
-      <main className="flex-1 overflow-y-auto">
-        <header className="bg-[var(--card-bg)] border-b border-[var(--border)] sticky top-0 z-10 px-8 py-4 flex items-center justify-between transition-colors duration-300">
-          <h1 className="text-2xl font-bold text-[var(--foreground)]">Staff Management</h1>
+      <main className="flex-1 overflow-x-hidden pt-0">
+        <header className="bg-[var(--card-bg)] border-b border-[var(--border)] sticky top-0 z-10 px-4 sm:px-8 py-4 flex items-center justify-between transition-colors duration-300">
+          <h1 className="text-xl sm:text-2xl font-bold text-[var(--foreground)] ml-14 lg:ml-0">Staff Management</h1>
         </header>
 
-        <div className="p-8">
+        <div className="p-4 sm:p-8">
           <AdminTable initialAdmins={admins || []} />
         </div>
       </main>

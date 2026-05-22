@@ -14,27 +14,27 @@ const SettingsPage = async () => {
   }
 
   return (
-    <div className="min-h-screen bg-[var(--background)] flex transition-colors duration-300">
+    <div className="min-h-screen bg-[var(--background)] block lg:flex transition-colors duration-300">
       <AdminSidebar />
 
       {/* Main Content */}
-      <main className="flex-1 overflow-y-auto">
-        <header className="bg-[var(--card-bg)] border-b border-[var(--border)] sticky top-0 z-10 px-8 py-4 flex items-center justify-between transition-colors duration-300">
-          <h1 className="text-2xl font-bold text-[var(--foreground)]">General Settings</h1>
+      <main className="flex-1 overflow-x-hidden pt-0">
+        <header className="bg-[var(--card-bg)] border-b border-[var(--border)] sticky top-0 z-10 px-4 sm:px-8 py-4 flex items-center justify-between transition-colors duration-300">
+          <h1 className="text-xl sm:text-2xl font-bold text-[var(--foreground)] ml-14 lg:ml-0">General Settings</h1>
         </header>
 
-        <div className="p-8 space-y-12">
+        <div className="p-4 sm:p-8 space-y-8 sm:space-y-12">
           {/* Theme Section */}
           <section>
-            <div className="mb-8">
-              <h2 className="text-xl font-bold text-[var(--foreground)] mb-2">Website Appearance</h2>
-              <p className="text-[var(--foreground)]/50">Select the primary theme for the entire organization website.</p>
+            <div className="mb-6 sm:mb-8">
+              <h2 className="text-lg sm:text-xl font-bold text-[var(--foreground)] mb-2">Website Appearance</h2>
+              <p className="text-sm text-[var(--foreground)]/50">Select the primary theme for the entire organization website.</p>
             </div>
             <ThemeSelector />
           </section>
 
           {/* Security Section */}
-          <section className="pt-12 border-t border-[var(--border)]">
+          <section className="pt-8 sm:pt-12 border-t border-[var(--border)]">
              <ChangePasswordForm />
           </section>
         </div>
