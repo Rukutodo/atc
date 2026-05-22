@@ -34,7 +34,7 @@ const AdminDashboard = async () => {
   const totalLeads = leadsList.length;
 
   return (
-    <div className="min-h-screen bg-[var(--background)] flex transition-colors duration-300">
+    <div className="min-h-screen bg-[var(--background)] block lg:flex transition-colors duration-300">
       <AdminSidebar />
 
       {/* Main Content */}
