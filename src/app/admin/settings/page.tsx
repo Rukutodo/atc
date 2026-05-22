@@ -15,8 +15,6 @@ const SettingsPage = async () => {
 
   return (
     <div className="min-h-screen bg-[var(--background)] block lg:flex transition-colors duration-300">
-      <AdminSidebar />
-
       {/* Main Content */}
       <main className="flex-1 overflow-x-hidden pt-0">
         <header className="bg-[var(--card-bg)] border-b border-[var(--border)] sticky top-0 z-10 px-4 sm:px-8 py-4 flex items-center justify-between transition-colors duration-300">
@@ -39,6 +37,8 @@ const SettingsPage = async () => {
           </section>
         </div>
       </main>
+
+      <AdminSidebar />
     </div>
   );
 };
