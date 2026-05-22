@@ -9,13 +9,16 @@ const siteUrl = "https://acharyatutorials.com";
 
 export const metadata: Metadata = {
   title: {
-    default: "Acharya Tutorials | Best Home Tuitions & Online Classes in Visakhapatnam",
-    template: "%s | Acharya Tutorials"
+    default: "Acharya Tutorials & Tuitions | Best Home Tuitions in Visakhapatnam",
+    template: "%s | Acharya Tutorials & Tuitions"
   },
-  description: "Acharya Tutorials: #1 choice for Home Tuitions & Online Classes globally. Specialized in ICSE, CBSE & SSC for All Classes (1st-12th). 25+ years of excellence in Visakhapatnam.",
+  description: "Acharya Tutorials (Acharya Tuitions): #1 choice for Home Tuitions & Online Classes in Visakhapatnam. Specialized in ICSE, CBSE & SSC for All Classes. 25+ years of teaching excellence.",
   keywords: [
     "Acharya Tutorials", 
+    "Acharya Tuitions",
+    "Acharya Home Tuitions",
     "Home Tuitions in Visakhapatnam", 
+    "Acharya Tuitions Vizag",
     "Online Classes for all subjects", 
     "Best tutors in Vizag for all classes", 
     "Private tutors for 11th and 12th", 
@@ -26,8 +29,7 @@ export const metadata: Metadata = {
     "Reasonable price online tuitions",
     "SSC coaching Visakhapatnam",
     "Spoken English courses Online"
-  ],
-  authors: [{ name: "Acharya Tutorials" }],
+  ],  authors: [{ name: "Acharya Tutorials" }],
   creator: "Acharya Tutorials",
   metadataBase: new URL(siteUrl),
   alternates: {
@@ -96,6 +98,7 @@ export default async function RootLayout({
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "name": "Acharya Tutorials",
+    "alternateName": "Acharya Tuitions",
     "image": `${siteUrl}/assets/StudySessionInACozyRoom.png`,
     "@id": siteUrl,
     "url": siteUrl,
